@@ -19,7 +19,7 @@ public class Usuario {
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "login")
 	private String login;
@@ -27,11 +27,11 @@ public class Usuario {
 	@Column(name = "senha")
 	private String senha;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

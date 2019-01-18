@@ -6,7 +6,7 @@
 
   CREATE TABLE public.usuario
 (
-  id int NOT NULL,
+  id bigint NOT NULL,
   login character varying NOT NULL,
   senha character varying NOT NULL,  
   CONSTRAINT usuario_pkey PRIMARY KEY (id)  
@@ -23,7 +23,7 @@ ALTER TABLE public.usuario
 
   CREATE TABLE public.complexo_eolico
 (
-  id int NOT NULL,
+  id bigint NOT NULL,
   nome character varying (45),
   uf character varying (45),
   identificador character varying (45),
@@ -41,12 +41,12 @@ ALTER TABLE public.complexo_eolico
 
   CREATE TABLE public.parque_eolico
 (
-  id int NOT NULL,
+  id bigint NOT NULL,
   nome character varying (45),
   latitude int,
   longitude int,
   potencia_instalada float,  
-  complexo_eolico_id int NOT NULL,
+  complexo_eolico_id bigint NOT NULL,
   CONSTRAINT parque_eolico_pkey PRIMARY KEY (id),
   CONSTRAINT complexo_eolico_id_fkey FOREIGN KEY (complexo_eolico_id)
   	REFERENCES public.complexo_eolico (id) MATCH SIMPLE
@@ -64,14 +64,14 @@ ALTER TABLE public.parque_eolico
 
   CREATE TABLE public.aerogerador
 (
-  id int NOT NULL,
+  id bigint NOT NULL,
   nome character varying (45),
   latitude float,
   longitude float,
   altura_torre float,
   diametro_varredura float,
   modelo character varying (45),
-  parque_eolico_id int NOT NULL,
+  parque_eolico_id bigint NOT NULL,
   CONSTRAINT aerogerador_pkey PRIMARY KEY (id),
   CONSTRAINT parque_eolico_id_fkey FOREIGN KEY (parque_eolico_id)
   	REFERENCES public.parque_eolico (id) MATCH SIMPLE
