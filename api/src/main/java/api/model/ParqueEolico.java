@@ -1,5 +1,4 @@
 package api.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -11,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-@Table(name = "aerogerador")
+@Table(name = "parque_eolico")
 @EntityListeners(AuditingEntityListener.class)
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
 //        allowGetters = true)
-public class Aerogerador {
+public class ParqueEolico {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
@@ -26,23 +25,17 @@ public class Aerogerador {
 	private String nome;
 	
 	@Column(name = "latitude")
-	private float latitude;
+	private int latitude;
 	
 	@Column(name = "longitude")
-	private float longitude;
+	private int longitude;
 	
-	@Column(name = "altura_torre")
-	private float alturaTorre;
+	@Column(name = "potencia_instalada")
+	private float potenciaInstalada;
 	
-	@Column(name = "diametro_varredura")
-	private float diametroVarredura;
-	
-	@Column(name = "modelo")
-	private String modelo;	
-	
-	@ManyToOne
-	@JoinColumn(name = "parque_eolico_id")
-	private ParqueEolico parqueEolico;
+	@ManyToOne	
+	@JoinColumn(name = "complexo_eolico_id")
+	private ComplexoEolico complexoEolico;
 
 	public Long getId() {
 		return id;
@@ -60,54 +53,35 @@ public class Aerogerador {
 		this.nome = nome;
 	}
 
-	public float getLatitude() {
+	public int getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(int latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public int getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(int longitude) {
 		this.longitude = longitude;
 	}
 
-	public float getAlturaTorre() {
-		return alturaTorre;
+	public float getPotenciaInstalada() {
+		return potenciaInstalada;
 	}
 
-	public void setAlturaTorre(float alturaTorre) {
-		this.alturaTorre = alturaTorre;
+	public void setPotenciaInstalada(float potenciaInstalada) {
+		this.potenciaInstalada = potenciaInstalada;
 	}
 
-	public float getDiametroVarredura() {
-		return diametroVarredura;
+	public ComplexoEolico getComplexoEolico() {
+		return complexoEolico;
 	}
 
-	public void setDiametroVarredura(float diametroVarredura) {
-		this.diametroVarredura = diametroVarredura;
+	public void setComplexoEolico(ComplexoEolico complexoEolico) {
+		this.complexoEolico = complexoEolico;
 	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public ParqueEolico getParqueEolico() {
-		return parqueEolico;
-	}
-
-	public void setParqueEolico(ParqueEolico parqueEolico) {
-		this.parqueEolico = parqueEolico;
-	}
-
-	
-	
 }
