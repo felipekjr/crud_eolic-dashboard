@@ -39,8 +39,8 @@ public class UsuarioService {
 	    Usuario usuario = usuarioDao.findById(UsuarioId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", UsuarioId));
 
-	    usuario.setLogin(usuarioDetails.getLogin());
-	    usuario.setSenha(usuarioDetails.getSenha());
+	    usuario.setUsername(usuarioDetails.getUsername());
+	    usuario.setPassword(usuarioDetails.getPassword());
 
 	    Usuario updatedUsuario = usuarioDao.save(usuario);
 	    return updatedUsuario;

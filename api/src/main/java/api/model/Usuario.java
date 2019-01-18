@@ -21,12 +21,12 @@ public class Usuario {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "login")
-	private String login;
+	@Column(name = "username")
+	private String username;
 	
-	@Column(name = "senha")
-	private String senha;
-	
+	@Column(name = "password")
+	private String password;
+
 	public Long getId() {
 		return id;
 	}
@@ -35,21 +35,19 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-
 }

@@ -7,8 +7,8 @@
   CREATE TABLE public.usuario
 (
   id bigint NOT NULL,
-  login character varying NOT NULL,
-  senha character varying NOT NULL,  
+  username character varying NOT NULL,
+  password character varying NOT NULL,  
   CONSTRAINT usuario_pkey PRIMARY KEY (id)  
 )
 WITH (
