@@ -8,7 +8,7 @@
 (
   id int NOT NULL,
   login character varying NOT NULL,
-  senha date NOT NULL,  
+  senha character varying NOT NULL,  
   CONSTRAINT usuario_pkey PRIMARY KEY (id)  
 )
 WITH (

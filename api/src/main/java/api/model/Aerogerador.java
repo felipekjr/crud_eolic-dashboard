@@ -11,10 +11,12 @@ import java.util.Date;
 @Entity
 @Table(name = "aerogerador")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
-        allowGetters = true)
+//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
+//        allowGetters = true)
 public class Aerogerador {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
+	
+	
 }
