@@ -25,7 +25,7 @@ public class UsuarioService {
 	public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
 	    return usuarioDao.save(usuario);
 	}
-    // Get a Single Usuario
+    // Coleta um único Usuario
 	@GetMapping("/usuarios/{id}")
 	public Usuario getUsuarioById(@PathVariable(value = "id") Long usuarioId) {
 	    return usuarioDao.findById(usuarioId)

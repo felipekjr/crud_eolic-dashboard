@@ -1,6 +1,8 @@
 package api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,8 +16,10 @@ import java.util.Date;
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"})
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GenericGenerator(name="incrementador" , strategy="increment")
+	@GeneratedValue(generator="incrementador")
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "login")
 	private String login;
