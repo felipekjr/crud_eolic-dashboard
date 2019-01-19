@@ -16,6 +16,7 @@ public class ComplexoEolicoService {
 	ComplexoEolicoDao complexoEolicoDao;
 
     // Coletar todos os usuários
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/complexo_eolico")
 	public List<ComplexoEolico> getAllComplexoEolico() {
 	    return complexoEolicoDao.findAll();

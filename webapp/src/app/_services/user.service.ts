@@ -6,7 +6,7 @@ import { User } from '../_models/user';
 @Injectable({ providedIn: 'root' })
 export class UserService {
     constructor(private http: HttpClient) { }
-    baseUrl: string = 'http://localhost:8080/usuarios';
+    baseUrl: string = 'http://localhost:8080/api/usuarios';
 
     getUsers() {
         return this.http.get<User[]>(this.baseUrl);

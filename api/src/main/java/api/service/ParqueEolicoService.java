@@ -16,6 +16,7 @@ public class ParqueEolicoService {
 	ParqueEolicoDao parqueEolicoDao;
 
     // Coletar todos os usuários
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/parque_eolico")
 	public List<ParqueEolico> getAllParqueEolico() {
 	    return parqueEolicoDao.findAll();

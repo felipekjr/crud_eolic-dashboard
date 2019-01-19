@@ -1,6 +1,6 @@
 export class Complexo {    
-    id: number,
-    nome: String,
-    uf: String,
-    identificador: String,
+    id: number;
+    nome: String;
+    uf: String;
+    identificador: String;
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Aerogerador } from '../_models/aerogerador'
 
@@ -8,7 +9,7 @@ import { Aerogerador } from '../_models/aerogerador'
 export class AerogeradorService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/aerogerador';
+  baseUrl: string = 'http://localhost:8080/api/aerogerador';
 
     getAerogeradores() {
         return this.http.get<Aerogerador[]>(this.baseUrl);

@@ -5,7 +5,15 @@
       </p>  
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>    
+    <li class="list-group-item" *ngFor="let complexo of complexos">
+      <div class="d-flex justify-content-between ">
+        {{complexo.nome}}
+        <span>
+            <i class="fas fa-edit"></i>
+            <i class="fas fa-times-circle"></i>
+        </span>           
+      </div>       
+    </li>    
   </ul>
   <div class="card-footer">
     <button type="button" class="btn btn-primary btn-block">CADASTRAR</button>

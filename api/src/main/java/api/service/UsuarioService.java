@@ -16,6 +16,7 @@ public class UsuarioService {
     UsuarioDao usuarioDao;
 
     // Coletar todos os usuários
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/usuarios")
 	public List<Usuario> getAllUsuarios() {
 	    return usuarioDao.findAll();

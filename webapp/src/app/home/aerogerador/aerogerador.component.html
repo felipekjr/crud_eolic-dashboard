@@ -5,9 +5,17 @@
       </p>  
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>   
+    <li class="list-group-item" *ngFor="let aerogerador of aerogeradores">      
+      <div class="d-flex justify-content-between ">
+          {{aerogerador.nome}}
+          <span>
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-times-circle"></i>
+          </span>           
+        </div>     
+    </li>   
   </ul>
   <div class="card-footer">
-    <button type="button" [disabled]="true" class="btn btn-primary btn-block">CADASTRAR</button>
+    <button type="button" [disabled]="!hasParque" class="btn btn-primary btn-block">CADASTRAR</button>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Complexo } from '../_models/complexo'
 
@@ -8,7 +9,7 @@ import { Complexo } from '../_models/complexo'
 export class ComplexoService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/complexo_eolico';
+  baseUrl: string = 'http://localhost:8080/api/complexo_eolico';
 
     getComplexos() {
         return this.http.get<Complexo[]>(this.baseUrl);

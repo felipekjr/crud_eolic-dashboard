@@ -16,6 +16,7 @@ public class AerogeradorService {
 	AerogeradorDao aerogeradorDao;
 
     // Coletar todos os usuários
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/aerogerador")
 	public List<Aerogerador> getAllAerogerador() {
 	    return aerogeradorDao.findAll();

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Parque } from '../_models/parque'
 
@@ -9,7 +10,7 @@ import { Parque } from '../_models/parque'
 export class ParqueService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/parque_eolico';
+  baseUrl: string = 'http://localhost:8080/api/parque_eolico';
     getParques() {
         return this.http.get<Parque[]>(this.baseUrl);
     }

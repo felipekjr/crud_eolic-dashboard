@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 
+import { ComplexoService } from '../../_services/complexo.service'
 
+import { Complexo } from '../../_models/complexo'
 
 @Component({
   selector: 'app-complexo-eolico',
@@ -8,14 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./complexo-eolico.component.scss']
 })
 export class ComplexoEolicoComponent implements OnInit {
-  complexos: Complexo[];
-  constructor() { }
+  complexos: Complexo[]; 
+  @Output() hasComplexo = new EventEmitter<boolean>();
+  constructor(private complexoService: ComplexoService) { }
 
   ngOnInit() {
-    this.userService.getUsers()
+    this.complexoService.getComplexos()
       .subscribe( data => {
-        this.users = data;
+        if(data){
+          this.hasComplexo.emit(true);           
+        }
+        this.complexos = data;
       });
+      
   }
 
 }
