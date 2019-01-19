@@ -1,6 +1,6 @@
 package api.service;
 
-import api.exception.ResourceNotFoundException;
+import api.exception.*;
 import api.model.Usuario;
 import api.dao.UsuarioDao;
 import org.springframework.beans.factory.annotation.Autowired;

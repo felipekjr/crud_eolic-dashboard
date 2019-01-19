@@ -1,5 +1,6 @@
 package api.security;
-import api.security.JWTAuthenticationFilter;
+
+import api.security.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
