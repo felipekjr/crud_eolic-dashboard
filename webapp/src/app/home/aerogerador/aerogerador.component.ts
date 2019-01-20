@@ -11,6 +11,7 @@ import {Aerogerador} from '../../_models/aerogerador'
 export class AerogeradorComponent implements OnInit {
   aerogeradores : Aerogerador[]; 
   aerogeradorForUpdate: Aerogerador;
+  isUpdate : boolean
   @Input() hasParque : boolean;
   constructor(private aerogeradorService: AerogeradorService) { }
 
@@ -18,8 +19,10 @@ export class AerogeradorComponent implements OnInit {
   editAerogerador(aerogerador: Aerogerador){
     if(aerogerador){
       this.aerogeradorForUpdate = aerogerador;
+      this.isUpdate = true;
     }else{
-      this.aerogeradorForUpdate = null;
+      this.aerogeradorForUpdate = new Aerogerador
+      this.isUpdate = false;
     }    
   }
 

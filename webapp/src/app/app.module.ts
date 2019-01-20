@@ -27,7 +27,7 @@ import { AerogeradorFormComponent } from './home/aerogerador/aerogerador-form/ae
     AerogeradorComponent,
     ParqueEolicoComponent,
     ComplexoEolicoComponent,
-    AerogeradorFormComponent
+    AerogeradorFormComponent,    
 
   ],  
   imports: [
