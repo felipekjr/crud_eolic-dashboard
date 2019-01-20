@@ -15,6 +15,7 @@ import { ComplexoEolicoComponent } from './home/complexo-eolico/complexo-eolico.
 
 import { JwtInterceptor } from './_helpers/jwt.interceptor'
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { AerogeradorFormComponent } from './home/aerogerador/aerogerador-form/aerogerador-form.component';
 
 
 
@@ -25,7 +26,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     HomeComponent,
     AerogeradorComponent,
     ParqueEolicoComponent,
-    ComplexoEolicoComponent
+    ComplexoEolicoComponent,
+    AerogeradorFormComponent
 
   ],  
   imports: [

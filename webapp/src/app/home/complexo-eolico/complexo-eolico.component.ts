@@ -14,6 +14,20 @@ export class ComplexoEolicoComponent implements OnInit {
   @Output() hasComplexo = new EventEmitter<boolean>();
   constructor(private complexoService: ComplexoService) { }
 
+
+  deleteComplexo(complexo : Complexo){
+    this.complexoService.deleteComplexo(complexo.id)
+      .subscribe(data => {       
+        this.complexoService.getComplexos()
+        .subscribe( data => {
+          if(data){          
+            this.hasComplexo.emit(true);
+          }
+          this.complexos = data;
+        });        
+      })
+  }
+
   ngOnInit() {
     this.complexoService.getComplexos()
       .subscribe( data => {

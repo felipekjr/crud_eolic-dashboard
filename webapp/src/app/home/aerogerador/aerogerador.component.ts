@@ -9,9 +9,29 @@ import {Aerogerador} from '../../_models/aerogerador'
   styleUrls: ['./aerogerador.component.scss']
 })
 export class AerogeradorComponent implements OnInit {
-  aerogeradores : Aerogerador[];
+  aerogeradores : Aerogerador[]; 
+  aerogeradorForUpdate: Aerogerador;
   @Input() hasParque : boolean;
   constructor(private aerogeradorService: AerogeradorService) { }
+
+
+  editAerogerador(aerogerador: Aerogerador){
+    if(aerogerador){
+      this.aerogeradorForUpdate = aerogerador;
+    }else{
+      this.aerogeradorForUpdate = null;
+    }    
+  }
+
+  deleteAerogerador(aerogerador : Aerogerador){    
+    this.aerogeradorService.deleteAerogerador(aerogerador.id)
+      .subscribe(data => {       
+          this.aerogeradorService.getAerogeradores()
+            .subscribe( data => {
+              this.aerogeradores = data;
+            });        
+      })      
+  }
 
   ngOnInit() {
     this.aerogeradorService.getAerogeradores()

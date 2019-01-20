@@ -8,15 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class AerogeradorService {
 	@Autowired
 	AerogeradorDao aerogeradorDao;
 
-    // Coletar todos os usuários
-	@CrossOrigin(origins = "http://localhost:4200")
+    // Coletar todos os usuários	
 	@GetMapping("/aerogerador")
 	public List<Aerogerador> getAllAerogerador() {
 	    return aerogeradorDao.findAll();
@@ -50,7 +49,7 @@ public class AerogeradorService {
 	    Aerogerador updatedAerogerador = aerogeradorDao.save(aerogerador);
 	    return updatedAerogerador;
 	}
-    // DeletarAerogerador
+    // DeletarAerogerador	
 	@DeleteMapping("/aerogerador/{id}")
 	public ResponseEntity<?> deleteAerogerador(@PathVariable(value = "id") Long aerogeradorId) {
 	    Aerogerador aerogerador = aerogeradorDao.findById(aerogeradorId)

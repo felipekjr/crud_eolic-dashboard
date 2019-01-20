@@ -14,6 +14,23 @@ export class ParqueEolicoComponent implements OnInit {
   @Output() hasParque = new EventEmitter<boolean>();
   constructor(private parqueService: ParqueService) { }
 
+
+  deleteParque(parque : Parque){    
+    this.parqueService.deleteParque(parque.id)
+      .subscribe(data => {       
+        this.parqueService.getParques()
+        .subscribe( data => {
+          if(data){          
+            this.hasParque.emit(true);
+          }else{
+            this.hasParque.emit(false);
+          }
+          this.parques = data;
+        });        
+      })      
+  }
+
+
   ngOnInit() {
     this.parqueService.getParques()
       .subscribe( data => {

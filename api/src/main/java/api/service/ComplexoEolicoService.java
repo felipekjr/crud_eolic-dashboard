@@ -8,15 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class ComplexoEolicoService {
 	@Autowired
 	ComplexoEolicoDao complexoEolicoDao;
 
-    // Coletar todos os usuários
-	@CrossOrigin(origins = "http://localhost:4200")
+    // Coletar todos os usuários	
 	@GetMapping("/complexo_eolico")
 	public List<ComplexoEolico> getAllComplexoEolico() {
 	    return complexoEolicoDao.findAll();

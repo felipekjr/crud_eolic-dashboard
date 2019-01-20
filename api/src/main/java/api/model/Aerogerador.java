@@ -26,16 +26,16 @@ public class Aerogerador {
 	private String nome;
 	
 	@Column(name = "latitude")
-	private float latitude;
+	private Float latitude;
 	
 	@Column(name = "longitude")
-	private float longitude;
+	private Float longitude;
 	
 	@Column(name = "altura_torre")
-	private float alturaTorre;
+	private Float alturaTorre;
 	
 	@Column(name = "diametro_varredura")
-	private float diametroVarredura;
+	private Float diametroVarredura;
 	
 	@Column(name = "modelo")
 	private String modelo;	
@@ -60,35 +60,35 @@ public class Aerogerador {
 		this.nome = nome;
 	}
 
-	public float getLatitude() {
+	public Float getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(Float latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public Float getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
 
-	public float getAlturaTorre() {
+	public Float getAlturaTorre() {
 		return alturaTorre;
 	}
 
-	public void setAlturaTorre(float alturaTorre) {
+	public void setAlturaTorre(Float alturaTorre) {
 		this.alturaTorre = alturaTorre;
 	}
 
-	public float getDiametroVarredura() {
+	public Float getDiametroVarredura() {
 		return diametroVarredura;
 	}
 
-	public void setDiametroVarredura(float diametroVarredura) {
+	public void setDiametroVarredura(Float diametroVarredura) {
 		this.diametroVarredura = diametroVarredura;
 	}
 
@@ -107,6 +107,8 @@ public class Aerogerador {
 	public void setParqueEolico(ParqueEolico parqueEolico) {
 		this.parqueEolico = parqueEolico;
 	}
+
+	
 
 	
 	

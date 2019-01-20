@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
   ) { }
 
+  get f() { return this.loginForm.controls; }
+  
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
