@@ -8,7 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:4200")
+
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class ParqueEolicoService {
@@ -22,7 +23,7 @@ public class ParqueEolicoService {
 	}
     // Criar novo usuário
 	@PostMapping("/parque_eolico")
-	public ParqueEolico createParqueEolico(@Valid @RequestBody ParqueEolico parqueEolico) {
+	public ParqueEolico createParqueEolico(@Valid @RequestBody ParqueEolico parqueEolico) {		
 	    return parqueEolicoDao.save(parqueEolico);
 	}
     // Coleta um único ParqueEolico
@@ -42,7 +43,7 @@ public class ParqueEolicoService {
 	    parqueEolico.setNome(parqueEolicoDetails.getNome());
 	    parqueEolico.setLatitude(parqueEolicoDetails.getLatitude());
 	    parqueEolico.setLongitude(parqueEolicoDetails.getLongitude());
-	    parqueEolico.setPotenciaInstalada(parqueEolicoDetails.getPotenciaInstalada());
+	    parqueEolico.setPotenciaInstalada(parqueEolicoDetails.getPotenciaInstalada());	    
 	    parqueEolico.setComplexoEolico(parqueEolicoDetails.getComplexoEolico());	    
 
 	    ParqueEolico updatedParqueEolico = parqueEolicoDao.save(parqueEolico);

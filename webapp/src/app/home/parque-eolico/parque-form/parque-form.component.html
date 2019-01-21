@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <p class="text-danger">*nome e complexo éolico obrigatório</p>
+        <p class="text-danger">*nome e complexo éolico obrigatório</p>
         <form parque="ngForm" [formGroup]="parqueForm" (ngSubmit)="onSubmit(parque)">
           <div class="form-group">
             <label for="nome">Nome</label>
@@ -22,24 +22,24 @@
           <div class="form-group">
             <label for="longitude">Longitude</label>
             <input type="text" formControlName="longitude" class="form-control" />
-          </div>     
+          </div>
           <div class="form-group">
             <label for="potencia_instalada">Potencia Instalada</label>
             <input type="text" formControlName="potencia_instalada" class="form-control" />
-          </div> 
+          </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">ID do Complexo Eólico</label>
-            <select class="form-control" id="exampleFormControlSelect1" formControlName="complexoEolico" >
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="complexoEolico">
               <option *ngFor="let complexo of complexos" [ngValue]="complexo">{{complexo.id}}</option>
             </select>
-          </div>      
+          </div>
           <div class="form-group modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" [disabled]="loading" class="btn btn-primary" *ngIf="isUpdate">Atualizar</button>
             <button type="submit" [disabled]="loading" class="btn btn-primary" *ngIf="!isUpdate">Cadastrar</button>
           </div>
         </form>
-      </div>      
+      </div>
     </div>
   </div>
 </div>

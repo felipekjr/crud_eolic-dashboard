@@ -10,6 +10,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -28,16 +30,16 @@ public class Aerogerador {
 	private String nome;
 	
 	@Column(name = "latitude")
-	private Float latitude;
+	private BigDecimal latitude;
 	
 	@Column(name = "longitude")
-	private Float longitude;
+	private BigDecimal longitude;
 	
 	@Column(name = "altura_torre")
-	private Float alturaTorre;
+	private BigDecimal alturaTorre;
 	
 	@Column(name = "diametro_varredura")
-	private Float diametroVarredura;
+	private BigDecimal diametroVarredura;
 	
 	@Column(name = "modelo")
 	private String modelo;		
@@ -62,35 +64,35 @@ public class Aerogerador {
 		this.nome = nome;
 	}
 
-	public Float getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Float latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
 
-	public Float getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Float longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 
-	public Float getAlturaTorre() {
+	public BigDecimal getAlturaTorre() {
 		return alturaTorre;
 	}
 
-	public void setAlturaTorre(Float alturaTorre) {
+	public void setAlturaTorre(BigDecimal alturaTorre) {
 		this.alturaTorre = alturaTorre;
 	}
 
-	public Float getDiametroVarredura() {
+	public BigDecimal getDiametroVarredura() {
 		return diametroVarredura;
 	}
 
-	public void setDiametroVarredura(Float diametroVarredura) {
+	public void setDiametroVarredura(BigDecimal diametroVarredura) {
 		this.diametroVarredura = diametroVarredura;
 	}
 

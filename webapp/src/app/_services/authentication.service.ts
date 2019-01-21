@@ -8,9 +8,9 @@ import { User } from '../_models/user';
   providedIn: 'root'
 })
 export class AuthenticationService {  
-  private currentUserSubject: BehaviorSubject<User>;
+    private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-
+    baseUrl: string = 'http://localhost:8080/api/usuarios';    
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -20,16 +20,16 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${config.apiUrl}/usuarios/authenticate`, { username, password })
+    login(user) {        
+        return this.http.post<any>(`${this.baseUrl}`, user)
             .pipe(map(user => {
+                console.log("sa")
                 // se houver um jwt no retorno, o login foi realizado com sucesso
                 if (user && user.token) {
                     // armazena o usuário e o token no local storage
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
-
                 return user;
             }));
     }

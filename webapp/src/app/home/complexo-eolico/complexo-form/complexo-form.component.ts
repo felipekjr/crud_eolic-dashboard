@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 import { ComplexoService } from '../../../_services/complexo.service'
 import { Complexo } from '../../../_models/complexo'
@@ -13,13 +13,13 @@ export class ComplexoFormComponent implements OnChanges {
 
   @Input() complexo;
   @Input() operation;
-  complexos : Complexo[];
-  complexoForm : FormGroup;
+  complexos: Complexo[];
+  complexoForm: FormGroup;
   isUpdate: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private complexoService : ComplexoService
+    private formBuilder: FormBuilder,
+    private complexoService: ComplexoService
   ) { }
 
 
@@ -32,7 +32,7 @@ export class ComplexoFormComponent implements OnChanges {
           window.alert("COMPLEXO CADASTRADO COM SUCESSO!")
           location.reload();
         })
-    //update  
+      //update  
     } else {
       this.complexoForm.value.id = this.complexo.id
       this.complexoService.updateComplexo(this.complexoForm.value)
@@ -43,30 +43,30 @@ export class ComplexoFormComponent implements OnChanges {
     }
   }
 
-  ngOnChanges(change: SimpleChanges){
-    if(this.operation){
-        this.isUpdate = true
-        this.complexoForm = this.formBuilder.group({          
-          nome: [this.complexo.nome, Validators.required],
-          uf: [this.complexo.uf],
-          identificador: [this.complexo.identificador]    
-        })
-    }else{
+  ngOnChanges(change: SimpleChanges) {
+    if (this.operation) {
+      this.isUpdate = true
+      this.complexoForm = this.formBuilder.group({
+        nome: [this.complexo.nome, Validators.required],
+        uf: [this.complexo.uf],
+        identificador: [this.complexo.identificador]
+      })
+    } else {
       this.isUpdate = false
-      this.complexoForm = this.formBuilder.group({          
+      this.complexoForm = this.formBuilder.group({
         nome: ['', Validators.required],
         uf: ['',],
-        identificador: ['',]    
+        identificador: ['',]
       })
-    } 
-  } 
+    }
+  }
 
-  ngOnInit(){    
-    this.complexoForm = this.formBuilder.group({          
+  ngOnInit() {
+    this.complexoForm = this.formBuilder.group({
       nome: ['', Validators.required],
       uf: ['',],
-      identificador: ['',]    
+      identificador: ['',]
     })
-  } 
+  }
 
 }

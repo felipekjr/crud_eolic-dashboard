@@ -37,17 +37,17 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">ID do Parque Eólico</label>
-            <select class="form-control" id="exampleFormControlSelect1" formControlName="parqueEolico" >
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="parqueEolico">
               <option *ngFor="let parque of parques" [ngValue]="parque">{{parque.id}}</option>
             </select>
-          </div>          
+          </div>
           <div class="form-group modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" [disabled]="loading" class="btn btn-primary" *ngIf="isUpdate">Atualizar</button>
             <button type="submit" [disabled]="loading" class="btn btn-primary" *ngIf="!isUpdate">Cadastrar</button>
           </div>
         </form>
-      </div>      
+      </div>
     </div>
   </div>
 </div>

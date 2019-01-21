@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
 
   
 
-  onMatchComplexo(event : boolean){
-    event ? this.hasComplexo = true : this.hasComplexo = false;    
+  onMatchComplexo(event : boolean){   
+    event ? this.hasComplexo = true : this.hasComplexo = false;
   }
   onMatchParque(event : boolean){    
     event ? this.hasParque = true : this.hasParque = false;    
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.complexo.parqueDeletedConfirmed = true;
   }
   ngOnInit() {
+   
   }
 
 }

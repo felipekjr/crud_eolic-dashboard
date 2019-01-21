@@ -7,8 +7,8 @@
   CREATE TABLE public.usuario
 (
   id bigint NOT NULL,
-  username character varying NOT NULL,
-  password character varying NOT NULL,  
+  login character varying NOT NULL,
+  senha character varying NOT NULL,  
   CONSTRAINT usuario_pkey PRIMARY KEY (id)  
 )
 WITH (
@@ -45,7 +45,7 @@ ALTER TABLE public.complexo_eolico
   nome character varying (45),
   latitude int,
   longitude int,
-  potencia_instalada real,  
+  potencia_instalada numeric(10),  
   complexo_eolico_id bigint NOT NULL,
   CONSTRAINT parque_eolico_pkey PRIMARY KEY (id),
   CONSTRAINT complexo_eolico_id_fkey FOREIGN KEY (complexo_eolico_id)
@@ -66,10 +66,10 @@ ALTER TABLE public.parque_eolico
 (
   id bigint NOT NULL,
   nome character varying (45),
-  latitude real,
-  longitude real,
-  altura_torre real,
-  diametro_varredura real,
+  latitude decimal,
+  longitude decimal,
+  altura_torre decimal,
+  diametro_varredura decimal,
   modelo character varying (45),
   parque_eolico_id bigint NOT NULL,
   CONSTRAINT aerogerador_pkey PRIMARY KEY (id),

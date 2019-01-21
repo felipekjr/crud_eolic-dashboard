@@ -7,6 +7,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class ParqueEolico {
 	private int longitude;
 	
 	@Column(name = "potencia_instalada")
-	private float potenciaInstalada;
+	private BigDecimal potenciaInstalada;
 	
 	@ManyToOne	
 	@JoinColumn(name = "complexo_eolico_id")
@@ -70,11 +72,11 @@ public class ParqueEolico {
 		this.longitude = longitude;
 	}
 
-	public float getPotenciaInstalada() {
+	public BigDecimal getPotenciaInstalada() {
 		return potenciaInstalada;
 	}
 
-	public void setPotenciaInstalada(float potenciaInstalada) {
+	public void setPotenciaInstalada(BigDecimal potenciaInstalada) {		
 		this.potenciaInstalada = potenciaInstalada;
 	}
 

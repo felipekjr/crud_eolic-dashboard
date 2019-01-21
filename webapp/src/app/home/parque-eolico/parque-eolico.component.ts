@@ -38,18 +38,18 @@ export class ParqueEolicoComponent implements OnInit {
   }
 
   //helper function delay
- delay = ms => new Promise(res => setTimeout(res, ms));
- async deleteParque(parque: Parque, fromComplexo: boolean) {    
+  delay = ms => new Promise(res => setTimeout(res, ms));
+  async deleteParque(parque: Parque, fromComplexo: boolean) {
     try {
       await this.deleteAerogeradores(parque)
       await this.delay(500);
       this.parqueService.deleteParque(parque.id).subscribe();
-      
-      if(fromComplexo){
-        this.parqueIsDeleted.emit(true);        
-      }else{
+
+      if (fromComplexo) {
+        this.parqueIsDeleted.emit(true);
+      } else {
         location.reload()
-      }      
+      }
     } catch{
       console.log("Erro");
     }
@@ -71,9 +71,11 @@ export class ParqueEolicoComponent implements OnInit {
             this.parques = data;
             this.hasParque.emit(true);
           }
-          else {
+          else {            
             this.hasParque.emit(false);
           }
+        }else{         
+          this.hasParque.emit(false);
         }
       });
     this.aerogeradorService.getAerogeradores()

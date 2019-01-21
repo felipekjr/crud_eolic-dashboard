@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 import { ParqueService } from '../../../_services/parque.service'
 import { ComplexoService } from '../../../_services/complexo.service'
@@ -15,16 +15,16 @@ export class ParqueFormComponent implements OnChanges {
 
   @Input() parque;
   @Input() operation;
-  parques : Parque[];
-  complexos : Complexo[];
-  complexo : Complexo;
-  parqueForm : FormGroup;
+  parques: Parque[];
+  complexos: Complexo[];
+  complexo: Complexo;
+  parqueForm: FormGroup;
   isUpdate: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private parqueService : ParqueService,
-    private complexoService : ComplexoService
+    private formBuilder: FormBuilder,
+    private parqueService: ParqueService,
+    private complexoService: ComplexoService
   ) { }
 
 
@@ -36,7 +36,7 @@ export class ParqueFormComponent implements OnChanges {
           window.alert("PARQUE CADASTRADO COM SUCESSO!")
           location.reload();
         })
-    //update  
+      //update  
     } else {
       console.log(this.parqueForm.value)
       this.parqueForm.value.id = this.parque.id
@@ -48,40 +48,40 @@ export class ParqueFormComponent implements OnChanges {
     }
   }
 
-  ngOnChanges(change: SimpleChanges){
-    if(this.operation){
-        this.isUpdate = true
-        this.parqueForm = this.formBuilder.group({          
-          nome: [this.parque.nome, Validators.required],
-          latitude: [this.parque.latitude],
-          longitude: [this.parque.longitude],  
-          potencia_instalada: [this.parque.potencia_instalada],
-          complexoEolico: [this.parque.complexoEolico, Validators.required]
-        })
-    }else{
+  ngOnChanges(change: SimpleChanges) {
+    if (this.operation) {
+      this.isUpdate = true
+      this.parqueForm = this.formBuilder.group({
+        nome: [this.parque.nome, Validators.required],
+        latitude: [this.parque.latitude],
+        longitude: [this.parque.longitude],
+        potencia_instalada: [this.parque.potencia_instalada],
+        complexoEolico: [this.parque.complexoEolico, Validators.required]
+      })
+    } else {
       this.isUpdate = false
-      this.parqueForm = this.formBuilder.group({          
+      this.parqueForm = this.formBuilder.group({
         nome: ['', Validators.required],
         latitude: [''],
-        longitude: [''],  
+        longitude: [''],
         potencia_instalada: [''],
-        complexoEolico:['', Validators.required], 
+        complexoEolico: ['', Validators.required],
       })
-    } 
-  } 
+    }
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.complexoService.getComplexos()
-      .subscribe( data => {        
+      .subscribe(data => {
         this.complexos = data;
-    }) 
-    this.parqueForm = this.formBuilder.group({          
+      })
+    this.parqueForm = this.formBuilder.group({
       nome: ['', Validators.required],
       latitude: [''],
-      longitude: [''],  
+      longitude: [''],
       potencia_instalada: [''],
-      complexoEolico:['', Validators.required], 
+      complexoEolico: ['', Validators.required],
     })
-  } 
+  }
 
 }
