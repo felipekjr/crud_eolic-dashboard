@@ -1,7 +1,7 @@
 <div class="col-xs-12 card">
   <div class="card-header">
       <p class="text-center text-uppercase">
-          <span class="font-weight-bold">Aerogeradores</span>
+          <span class="font-weight-bold">Aerogeradores</span>          
       </p>  
   </div>
   <ul class="list-group list-group-flush">
@@ -9,14 +9,14 @@
       <div class="d-flex justify-content-between ">
           {{aerogerador.nome}}
           <span>              
-              <i class="fas fa-edit" data-toggle="modal" data-target="#aerogeradorModal" (click)="editAerogerador(aerogerador)"></i>
+              <i class="fas fa-edit" data-toggle="modal" data-target="#aerogeradorModal" (click)="updateAerogerador(aerogerador)"></i>
               <i class="fas fa-times-circle" (click)="deleteAerogerador(aerogerador)"></i>
           </span>           
         </div>     
     </li>   
   </ul>
   <div class="card-footer">
-    <button type="button" [disabled]="!hasParque" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aerogeradorModal" (click)="editAerogerador()">CADASTRAR</button>
+    <button type="button" [disabled]="!hasParque" class="btn btn-primary btn-block" data-toggle="modal" data-target="#aerogeradorModal" (click)="updateAerogerador()">CADASTRAR</button>
   </div>
 </div>
 

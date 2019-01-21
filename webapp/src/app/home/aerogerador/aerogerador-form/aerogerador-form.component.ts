@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges, OnChanges, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 
 import { Aerogerador } from '../../../_models/aerogerador'
 import { Parque } from '../../../_models/parque'
@@ -15,52 +15,50 @@ export class AerogeradorFormComponent implements OnChanges {
   @Input() aerogerador
   @Input() operation
   isUpdate: boolean = false
-  parques : Parque[]
+  parques: Parque[]
   parque: Parque
 
   constructor(
-    private formBuilder: FormBuilder,    
+    private formBuilder: FormBuilder,
     private parqueService: ParqueService,
-    private aerogeradorService : AerogeradorService
-  ) { }  
-  
+    private aerogeradorService: AerogeradorService
+  ) { }
 
-  onSubmit(): void {    
+
+  onSubmit(): void {
     //cadastro
-    if(!this.isUpdate){
-      console.table(this.aerogeradorForm.value)
+    if (!this.isUpdate) {
       this.aerogeradorService.createAerogerador(this.aerogeradorForm.value)
-      .subscribe( data => {
-        window.alert("AEROGERADOR CADASTRADO COM SUCESSO!")
-        location.reload();
-    })  
-    //update  
-    }else{
-      this.aerogeradorForm.value.id = this.aerogerador.id        
+        .subscribe(data => {
+          window.alert("AEROGERADOR CADASTRADO COM SUCESSO!")
+          location.reload();
+        })
+      //update  
+    } else {
+      this.aerogeradorForm.value.id = this.aerogerador.id
       this.aerogeradorService.updateAerogerador(this.aerogeradorForm.value)
-        .subscribe( data => {
+        .subscribe(data => {
           window.alert("AEROGERADOR ATUALIZADO COM SUCESSO!")
           location.reload();
-        }) 
-    }      
-      
-  } 
-  
-  ngOnChanges(change: SimpleChanges){
-    if(this.operation){
-        this.isUpdate = true
-        this.aerogeradorForm = this.formBuilder.group({       
-          nome: [this.aerogerador.nome, Validators.required],
-          latitude: [this.aerogerador.latitude],
-          longitude: [this.aerogerador.longitude],
-          altura_torre: [this.aerogerador.altura_torre],
-          diametro_varredura: [this.aerogerador.diametro_varredura],
-          modelo: [this.aerogerador.modelo],
-          parqueEolico: [this.aerogerador.parqueEolico]
         })
-    }else{
+    }
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+    if (this.operation) {
+      this.isUpdate = true
+      this.aerogeradorForm = this.formBuilder.group({
+        nome: [this.aerogerador.nome, Validators.required],
+        latitude: [this.aerogerador.latitude],
+        longitude: [this.aerogerador.longitude],
+        altura_torre: [this.aerogerador.altura_torre],
+        diametro_varredura: [this.aerogerador.diametro_varredura],
+        modelo: [this.aerogerador.modelo],
+        parqueEolico: [this.aerogerador.parqueEolico]
+      })
+    } else {
       this.isUpdate = false
-      this.aerogeradorForm = this.formBuilder.group({          
+      this.aerogeradorForm = this.formBuilder.group({
         nome: ['', Validators.required],
         latitude: ['',],
         longitude: ['',],
@@ -69,16 +67,16 @@ export class AerogeradorFormComponent implements OnChanges {
         modelo: ['',],
         parqueEolico: ['', Validators.required]
       })
-    } 
-  }  
+    }
+  }
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.parqueService.getParques()
-      .subscribe( data => {        
+      .subscribe(data => {
         this.parques = data;
-    }) 
-    this.aerogeradorForm = this.formBuilder.group({          
+      })
+    this.aerogeradorForm = this.formBuilder.group({
       nome: ['', Validators.required],
       latitude: ['',],
       longitude: ['',],
@@ -87,8 +85,8 @@ export class AerogeradorFormComponent implements OnChanges {
       modelo: ['',],
       parqueEolico: ['', Validators.required]
     })
-  } 
-} 
-  
-  
+  }
+}
+
+
 

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "parque_eolico")
@@ -36,7 +37,7 @@ public class ParqueEolico {
 	@ManyToOne	
 	@JoinColumn(name = "complexo_eolico_id")
 	private ComplexoEolico complexoEolico;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -84,4 +85,5 @@ public class ParqueEolico {
 	public void setComplexoEolico(ComplexoEolico complexoEolico) {
 		this.complexoEolico = complexoEolico;
 	}
+	
 }

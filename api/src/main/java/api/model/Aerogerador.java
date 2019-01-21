@@ -3,6 +3,8 @@ package api.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,7 +40,7 @@ public class Aerogerador {
 	private Float diametroVarredura;
 	
 	@Column(name = "modelo")
-	private String modelo;	
+	private String modelo;		
 	
 	@ManyToOne
 	@JoinColumn(name = "parque_eolico_id")

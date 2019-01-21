@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import {AerogeradorService} from '../../_services/aerogerador.service'
 import {Aerogerador} from '../../_models/aerogerador'
@@ -13,10 +13,11 @@ export class AerogeradorComponent implements OnInit {
   aerogeradorForUpdate: Aerogerador;
   isUpdate : boolean
   @Input() hasParque : boolean;
+  @Output() hasAerogerador = new EventEmitter<boolean>();
   constructor(private aerogeradorService: AerogeradorService) { }
 
-
-  editAerogerador(aerogerador: Aerogerador){
+  //editar e criar
+  updateAerogerador(aerogerador: Aerogerador){
     if(aerogerador){
       this.aerogeradorForUpdate = aerogerador;
       this.isUpdate = true;
@@ -33,14 +34,26 @@ export class AerogeradorComponent implements OnInit {
             .subscribe( data => {
               this.aerogeradores = data;
             });        
-      })      
-  }
+      }) 
+      location.reload()   
+  }  
 
   ngOnInit() {
     this.aerogeradorService.getAerogeradores()
       .subscribe( data => {
         this.aerogeradores = data;
-      });
-  }
-
+        if(this.aerogeradores){  
+          if(this.aerogeradores.length == 0){
+            this.hasAerogerador.emit(false)
+          }  
+          else{
+            this.hasAerogerador.emit(true)
+          }                 
+        }
+      });            
+  }  
 }
+  
+                     
+  
+
