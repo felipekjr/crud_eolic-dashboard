@@ -14,23 +14,26 @@ import java.util.List;
 public class ComplexoEolicoService {
 	@Autowired
 	ComplexoEolicoDao complexoEolicoDao;
-
+	
     // Coletar todos os usuários	
 	@GetMapping("/complexo_eolico")
 	public List<ComplexoEolico> getAllComplexoEolico() {
 	    return complexoEolicoDao.findAll();
 	}
+	
     // Criar novo usuário
 	@PostMapping("/complexo_eolico")
 	public ComplexoEolico createComplexoEolico(@Valid @RequestBody ComplexoEolico complexoEolico) {
 	    return complexoEolicoDao.save(complexoEolico);
 	}
+	
     // Coleta um único ComplexoEolico
 	@GetMapping("/complexo_eolico/{id}")
 	public ComplexoEolico getComplexoEolicoById(@PathVariable(value = "id") Long complexoEolicoId) {
 	    return complexoEolicoDao.findById(complexoEolicoId)
 	            .orElseThrow(() -> new ResourceNotFoundException("ComplexoEolico", "id", complexoEolicoId));
 	}
+	
     // Atualizar ComplexoEolico
 	@PutMapping("/complexo_eolico/{id}")
 	public ComplexoEolico updateComplexoEolico(@PathVariable(value = "id") Long ComplexoEolicoId,
@@ -47,6 +50,7 @@ public class ComplexoEolicoService {
 	    ComplexoEolico updatedComplexoEolico = complexoEolicoDao.save(complexoEolico);
 	    return updatedComplexoEolico;
 	}
+	
     // DeletarComplexoEolico
 	@DeleteMapping("/complexo_eolico/{id}")
 	public ResponseEntity<?> deleteComplexoEolico(@PathVariable(value = "id") Long complexoEolicoId) {

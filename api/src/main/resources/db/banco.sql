@@ -45,7 +45,7 @@ ALTER TABLE public.complexo_eolico
   nome character varying (45),
   latitude int,
   longitude int,
-  potencia_instalada numeric(10),  
+  potencia_instalada numeric,  
   complexo_eolico_id bigint NOT NULL,
   CONSTRAINT parque_eolico_pkey PRIMARY KEY (id),
   CONSTRAINT complexo_eolico_id_fkey FOREIGN KEY (complexo_eolico_id)
@@ -66,10 +66,10 @@ ALTER TABLE public.parque_eolico
 (
   id bigint NOT NULL,
   nome character varying (45),
-  latitude decimal,
-  longitude decimal,
-  altura_torre decimal,
-  diametro_varredura decimal,
+  latitude numeric,
+  longitude numeric,
+  altura_torre numeric,
+  diametro_varredura numeric,
   modelo character varying (45),
   parque_eolico_id bigint NOT NULL,
   CONSTRAINT aerogerador_pkey PRIMARY KEY (id),

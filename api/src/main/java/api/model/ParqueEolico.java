@@ -34,12 +34,12 @@ public class ParqueEolico {
 	private int longitude;
 	
 	@Column(name = "potencia_instalada")
-	private BigDecimal potenciaInstalada;
+	private BigDecimal potencia_instalada;
 	
 	@ManyToOne	
 	@JoinColumn(name = "complexo_eolico_id")
 	private ComplexoEolico complexoEolico;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -72,12 +72,12 @@ public class ParqueEolico {
 		this.longitude = longitude;
 	}
 
-	public BigDecimal getPotenciaInstalada() {
-		return potenciaInstalada;
+	public BigDecimal getPotencia_instalada() {
+		return potencia_instalada;
 	}
 
-	public void setPotenciaInstalada(BigDecimal potenciaInstalada) {		
-		this.potenciaInstalada = potenciaInstalada;
+	public void setPotencia_instalada(BigDecimal potencia_instalada) {
+		this.potencia_instalada = potencia_instalada;
 	}
 
 	public ComplexoEolico getComplexoEolico() {
@@ -86,6 +86,6 @@ public class ParqueEolico {
 
 	public void setComplexoEolico(ComplexoEolico complexoEolico) {
 		this.complexoEolico = complexoEolico;
-	}
+	}	
 	
 }

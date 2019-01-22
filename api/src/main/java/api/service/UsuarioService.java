@@ -18,7 +18,7 @@ import api.model.Usuario;
 import javax.validation.Valid;
 import java.util.List;
 
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 @Repository
@@ -32,13 +32,24 @@ public class UsuarioService{
 	@GetMapping("/usuarios")
 	public List<Usuario> getAllUsuarios() {
 	    return usuarioDao.findAll();
-	}
+	}	
 	
-    // Criar novo usuário
+	//Loga o usuário
+	@PostMapping("/login")
+	public Usuario logarUsuario(@Valid @RequestBody Usuario usuario) {
+	    Usuario user = (Usuario) userDetailsService.loadUserByUsername(usuario.getLogin());
+	    if(user.getSenha() == usuario.getSenha()) {
+	    	return user;
+	    }else {
+	    	throw new UsernameNotFoundException("Login ou Senha Inválidos");
+	    }		
+	}
+		
+	//Criar novo usuário
 	@PostMapping("/usuarios")
 	public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
 	    return usuarioDao.save(usuario);
-	}
+	}   
 	
     // Coleta um único Usuario
 	@GetMapping("/usuarios/{id}")
@@ -51,7 +62,6 @@ public class UsuarioService{
 	@PutMapping("/usuarios/{id}")
 	public Usuario updateUsuario(@PathVariable(value = "id") Long UsuarioId,
 	                                        @Valid @RequestBody Usuario usuarioDetails) {
-
 	    Usuario usuario = usuarioDao.findById(UsuarioId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", UsuarioId));
 
@@ -67,17 +77,8 @@ public class UsuarioService{
 	public ResponseEntity<?> deleteUsuario(@PathVariable(value = "id") Long usuarioId) {
 	    Usuario usuario = usuarioDao.findById(usuarioId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Usuario", "id", usuarioId));
-
 	    usuarioDao.delete(usuario);
 	    return ResponseEntity.ok().build();
 	}
-	
-	//Loga usuário
-	@PostMapping("/login")
-	public UserDetails logarUsuario(@Valid @RequestBody Usuario usuario) {
-	    return userDetailsService.loadUserByUsername(usuario.getLogin());
-	}
-	
-	
 
 }

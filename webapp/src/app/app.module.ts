@@ -3,18 +3,17 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-
-
 import { AppComponent } from './app.component';
+import { routing } from './app.routing';
+
+import { JwtInterceptor } from './_helpers/jwt.interceptor'
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+
 import { LoginComponent} from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AerogeradorComponent } from './home/aerogerador/aerogerador.component'
 import { ParqueEolicoComponent } from './home/parque-eolico/parque-eolico.component'
 import { ComplexoEolicoComponent } from './home/complexo-eolico/complexo-eolico.component'
-
-import { JwtInterceptor } from './_helpers/jwt.interceptor'
-import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AerogeradorFormComponent } from './home/aerogerador/aerogerador-form/aerogerador-form.component';
 import { ComplexoFormComponent } from './home/complexo-eolico/complexo-form/complexo-form.component';
 import { ParqueFormComponent } from './home/parque-eolico/parque-form/parque-form.component';
@@ -35,11 +34,11 @@ import { ParqueFormComponent } from './home/parque-eolico/parque-form/parque-for
 
   ],  
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule,    
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,  
+    routing
 
   ],
   providers: [

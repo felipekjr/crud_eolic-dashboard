@@ -25,8 +25,7 @@ export class ComplexoFormComponent implements OnChanges {
 
   onSubmit(): void {
     //cadastro
-    if (!this.isUpdate) {
-      console.table(this.complexoForm.value)
+    if (!this.isUpdate) {      
       this.complexoService.createComplexo(this.complexoForm.value)
         .subscribe(data => {
           window.alert("COMPLEXO CADASTRADO COM SUCESSO!")

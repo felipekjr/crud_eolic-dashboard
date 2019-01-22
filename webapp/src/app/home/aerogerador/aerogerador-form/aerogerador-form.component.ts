@@ -27,7 +27,7 @@ export class AerogeradorFormComponent implements OnChanges {
 
   onSubmit(): void {
     //cadastro
-    if (!this.isUpdate) {
+    if (!this.isUpdate) {     
       this.aerogeradorService.createAerogerador(this.aerogeradorForm.value)
         .subscribe(data => {
           window.alert("AEROGERADOR CADASTRADO COM SUCESSO!")

@@ -20,17 +20,21 @@ public class AerogeradorService {
 	public List<Aerogerador> getAllAerogerador() {
 	    return aerogeradorDao.findAll();
 	}
+	
     // Criar novo usuário
 	@PostMapping("/aerogerador")
-	public Aerogerador createAerogerador(@Valid @RequestBody Aerogerador aerogerador) {
+	public Aerogerador createAerogerador(@Valid @RequestBody Aerogerador aerogerador) {		
+		System.out.println(aerogerador.getAltura_torre());	
 	    return aerogeradorDao.save(aerogerador);
 	}
+	
     // Coleta um único Aerogerador
 	@GetMapping("/aerogerador/{id}")
 	public Aerogerador getAerogeradorById(@PathVariable(value = "id") Long aerogeradorId) {
 	    return aerogeradorDao.findById(aerogeradorId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Aerogerador", "id", aerogeradorId));
 	}
+	
     // Atualizar Aerogerador
 	@PutMapping("/aerogerador/{id}")
 	public Aerogerador updateAerogerador(@PathVariable(value = "id") Long AerogeradorId,
@@ -41,14 +45,15 @@ public class AerogeradorService {
 
 	    aerogerador.setNome(aerogeradorDetails.getNome());
 	    aerogerador.setLatitude(aerogeradorDetails.getLatitude());
-	    aerogerador.setAlturaTorre(aerogeradorDetails.getAlturaTorre());
-	    aerogerador.setDiametroVarredura(aerogeradorDetails.getDiametroVarredura());
+	    aerogerador.setAltura_torre(aerogeradorDetails.getAltura_torre());
+	    aerogerador.setDiametro_varredura(aerogeradorDetails.getDiametro_varredura());
 	    aerogerador.setModelo(aerogeradorDetails.getModelo());
 	    aerogerador.setParqueEolico(aerogeradorDetails.getParqueEolico());
 
 	    Aerogerador updatedAerogerador = aerogeradorDao.save(aerogerador);
 	    return updatedAerogerador;
 	}
+	
     // DeletarAerogerador	
 	@DeleteMapping("/aerogerador/{id}")
 	public ResponseEntity<?> deleteAerogerador(@PathVariable(value = "id") Long aerogeradorId) {

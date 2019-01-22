@@ -14,8 +14,6 @@ export class HomeComponent implements OnInit {
   @ViewChild(ComplexoEolicoComponent) complexo: ComplexoEolicoComponent;
   constructor() { }
 
-  
-
   onMatchComplexo(event : boolean){   
     event ? this.hasComplexo = true : this.hasComplexo = false;
   }

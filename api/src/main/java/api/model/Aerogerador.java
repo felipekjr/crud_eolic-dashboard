@@ -36,10 +36,10 @@ public class Aerogerador {
 	private BigDecimal longitude;
 	
 	@Column(name = "altura_torre")
-	private BigDecimal alturaTorre;
+	private BigDecimal altura_torre;
 	
 	@Column(name = "diametro_varredura")
-	private BigDecimal diametroVarredura;
+	private BigDecimal diametro_varredura;
 	
 	@Column(name = "modelo")
 	private String modelo;		
@@ -80,20 +80,20 @@ public class Aerogerador {
 		this.longitude = longitude;
 	}
 
-	public BigDecimal getAlturaTorre() {
-		return alturaTorre;
+	public BigDecimal getAltura_torre() {
+		return altura_torre;
 	}
 
-	public void setAlturaTorre(BigDecimal alturaTorre) {
-		this.alturaTorre = alturaTorre;
+	public void setAltura_torre(BigDecimal altura_torre) {
+		this.altura_torre = altura_torre;
 	}
 
-	public BigDecimal getDiametroVarredura() {
-		return diametroVarredura;
+	public BigDecimal getDiametro_varredura() {
+		return diametro_varredura;
 	}
 
-	public void setDiametroVarredura(BigDecimal diametroVarredura) {
-		this.diametroVarredura = diametroVarredura;
+	public void setDiametro_varredura(BigDecimal diametro_varredura) {
+		this.diametro_varredura = diametro_varredura;
 	}
 
 	public String getModelo() {
@@ -111,9 +111,6 @@ public class Aerogerador {
 	public void setParqueEolico(ParqueEolico parqueEolico) {
 		this.parqueEolico = parqueEolico;
 	}
-
-	
-
 	
 	
 }
