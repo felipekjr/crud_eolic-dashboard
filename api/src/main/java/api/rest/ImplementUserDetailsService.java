@@ -1,27 +1,21 @@
-package api.service;
+package api.rest;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-
-import org.jose4j.lang.JoseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import api.dao.UsuarioDao;
-import api.exception.ResponseMessageObject;
+import api.repository.UsuarioRepository;
 import api.model.Usuario;
-import api.model.UsuarioToken;
 
 @Repository
 public class ImplementUserDetailsService implements UserDetailsService {	
 	@Autowired
-    UsuarioDao usuarioDao;	
+    UsuarioRepository usuarioRepository;
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {		
-		Usuario usuario = usuarioDao.findByLogin(login);		
+		Usuario usuario = usuarioRepository.findByLogin(login);
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuário não existe");
 		}else {

@@ -1,8 +1,8 @@
-package api.service;
+package api.rest;
 
 import api.exception.ResourceNotFoundException;
 import api.model.ComplexoEolico;
-import api.dao.ComplexoEolicoDao;
+import api.repository.ComplexoEolicoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

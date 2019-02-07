@@ -1,108 +1,63 @@
 package api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
-import java.util.Collection;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(schema="public",name = "usuario")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, ignoreUnknown = true)
 
-public class Usuario implements UserDetails {		
+public class Usuario {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
 	private Long id;
-	
-	@Column(name = "login")
+
+	@NotNull
+	@Column(name = "login", unique = true)
 	private String login;
-	
+
+	@NotNull
 	@Column(name = "senha")
 	private String senha;
 
-	public Long getId() {
-		return id;
-	}
+	@Transient
+	private String token = "";
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public String getLogin() {
+        return login;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public String getSenha() {
+        return senha;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.login;
-	}
-	
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.senha;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	
-	
-	
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

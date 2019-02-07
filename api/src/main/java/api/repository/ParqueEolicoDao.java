@@ -1,4 +1,4 @@
-package api.dao;
+package api.repository;
 
 import api.model.ParqueEolico;
 import org.springframework.data.jpa.repository.JpaRepository;

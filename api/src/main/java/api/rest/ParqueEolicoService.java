@@ -1,8 +1,8 @@
-package api.service;
+package api.rest;
 
 import api.exception.ResourceNotFoundException;
 import api.model.ParqueEolico;
-import api.dao.ParqueEolicoDao;
+import api.repository.ParqueEolicoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

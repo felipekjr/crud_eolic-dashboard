@@ -1,4 +1,4 @@
-package api.dao;
+package api.repository;
 
 import api.model.Aerogerador;
 import org.springframework.data.jpa.repository.JpaRepository;
