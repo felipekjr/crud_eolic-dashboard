@@ -1,4 +1,4 @@
-package api.seguranca.jwt.config;
+package api.seguranca.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;

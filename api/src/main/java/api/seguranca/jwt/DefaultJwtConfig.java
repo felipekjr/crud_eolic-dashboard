@@ -1,13 +1,11 @@
 package api.seguranca.jwt;
 import api.model.Usuario;
-import api.SituacaoToken;
 import api.util.SituacaoToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Range;
 import org.springframework.stereotype.Component;
 import java.util.*;
 
@@ -17,19 +15,15 @@ import java.util.*;
 
 @Component
 class DefaultJwtConfig implements JwtService {
+        @Value("\\${jwt.secret}")
+        private String secret = "";
 
-//        @Value("\${jwt.secret}")
-//        private var secret: String? = ""
-//
-//        @Value("\${jwt.sessionTime}")
-//        private var sessionTime: Int = 0
-//
-//        @Value("\${jwt.refreshTime}")
-//        private var refreshTime: Int = 0
+        @Value("\\${jwt.sessionTime}")
+        private int sessionTime = 0;
 
-        private static final String SECRET = "MySecreteApp";
-        private static final String TOKEN_PREFIX = "Bearer";
-        private static final String HEADER_STRING = "Authorization";
+        @Value("\\${jwt.refreshTime}")
+        private int refreshTime = 0;
+
         private static final long MILISEGUNDOS_POR_MINUTO = 60000;
 
         public String toToken(Usuario usuario){
@@ -37,14 +31,14 @@ class DefaultJwtConfig implements JwtService {
                 .builder()
                 .setSubject(usuario.getId().toString())
                 .setExpiration(expireTimeFromNow())
-                .signWith(SignatureAlgorithm.HS512,SECRET)
+                .signWith(SignatureAlgorithm.HS512,secret)
                 .compact();
         }
 
         @Override
         public Optional<Long> getIdFromToken(String token){
                 try {
-                        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+                        Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
                         return Optional.of(java.lang.Long.valueOf(claimsJws.getBody().getSubject()));
                 }catch (Exception e) {
                         return Optional.empty();
@@ -52,7 +46,7 @@ class DefaultJwtConfig implements JwtService {
         }
 
         public SituacaoToken verificaTempoExpirado(String token){
-                Jws<Claims> claimsJws = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+                Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
                 Date dataAtual = new Date(System.currentTimeMillis());
                 Date dataExpiracao = claimsJws.getBody().getExpiration();
                 Date dataRefresh = getHorarioRefresh(dataExpiracao, sessionTime, refreshTime);
@@ -79,6 +73,6 @@ class DefaultJwtConfig implements JwtService {
         }
 
         private Date expireTimeFromNow() {
-                return new Date(System.currentTimeMillis() + sessionTime * MILISEGUNDOS_POR_MINUTO)
+                return new Date(System.currentTimeMillis() + sessionTime * MILISEGUNDOS_POR_MINUTO);
         }
 }

@@ -1,4 +1,4 @@
-package api.seguranca.jwt.config;
+package api.seguranca.config;
 
 import api.seguranca.jwt.JwtTokenFilter;
 
@@ -30,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf()
@@ -47,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.anyRequest().permitAll();
 
 		// filtra outras requisições para verificar a presença do JWT no header
-		httpSecurity.addFilterBefore(new jwtTokenFilter(),
-	                UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 }

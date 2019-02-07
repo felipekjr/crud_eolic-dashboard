@@ -2,14 +2,11 @@ package api.seguranca.jwt;
 
 import api.model.Usuario;
 import api.repository.UsuarioRepository;
-import  api.util.SituacaoToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.Authentication;
-import  org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.web.filter.OncePerRequestFilter;
+import javax.servlet.Filter;
 
 import java.io.IOException;
 import java.util.*;
@@ -18,11 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 /**
  * Created by Gustavo Galvao on 23/07/2018.
  */
 
-public class JwtTokenFilter{
+public class JwtTokenFilter extends OncePerRequestFilter{
 
     @Autowired
     private UsuarioRepository usuarioRepository;
