@@ -1,4 +1,4 @@
-package api.seguranca.config;
+package api.seguranca;
 
 import api.seguranca.jwt.JwtTokenFilter;
 

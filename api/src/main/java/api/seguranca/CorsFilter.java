@@ -1,4 +1,4 @@
-package api.seguranca.config;
+package api.seguranca;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;

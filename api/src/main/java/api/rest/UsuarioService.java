@@ -2,14 +2,9 @@ package api.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.omg.CORBA.Any;
-import api.repository.UsuarioRepository;
+import api.repository.usuario.UsuarioRepository;
 import api.model.Usuario;
-import api.rest.util.ApiInternalError;
 
 import javax.validation.Valid;
 import java.util.List;
