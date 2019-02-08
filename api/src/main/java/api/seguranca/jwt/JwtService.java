@@ -8,7 +8,7 @@ import  api.util.SituacaoToken;
 import org.springframework.stereotype.Service;
 
 @Service
-interface JwtService {
+public interface JwtService {
     String toToken(Usuario usuario);
     Optional<Long> getIdFromToken(String token);
     SituacaoToken verificaTempoExpirado(String token);

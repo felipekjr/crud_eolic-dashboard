@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.util.Optional;
-
 /**
  * Created by Gustavo Galvao on 23/07/2018.
  */
 
+@Service
 public class UsuarioRepositoryImpl implements UsuarioRepositoryCustomizado {
 
         @Autowired

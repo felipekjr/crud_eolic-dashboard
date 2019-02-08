@@ -15,17 +15,13 @@ import java.util.*;
 
 @Component
 class DefaultJwtConfig implements JwtService {
-        @Value("\\${jwt.secret}")
-        private String secret = "";
 
-        @Value("\\${jwt.sessionTime}")
-        private int sessionTime = 0;
-
-        @Value("\\${jwt.refreshTime}")
-        private int refreshTime = 0;
-
+        private String secret = "MySecret";
+        private int sessionTime = 60;
+        private int refreshTime = 60;
         private static final long MILISEGUNDOS_POR_MINUTO = 60000;
 
+        @Override
         public String toToken(Usuario usuario){
                 return Jwts
                 .builder()
@@ -44,7 +40,7 @@ class DefaultJwtConfig implements JwtService {
                         return Optional.empty();
                 }
         }
-
+        @Override
         public SituacaoToken verificaTempoExpirado(String token){
                 Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
                 Date dataAtual = new Date(System.currentTimeMillis());

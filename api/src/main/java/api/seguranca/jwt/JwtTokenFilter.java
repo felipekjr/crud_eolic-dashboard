@@ -2,6 +2,7 @@ package api.seguranca.jwt;
 
 import api.model.Usuario;
 import api.repository.usuario.UsuarioRepository;
+import api.util.SituacaoToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import static api.util.SituacaoToken.ANTES_DO_REFRESH;
+import static api.util.SituacaoToken.DEPOIS_DA_EXPIRACAO;
+import static api.util.SituacaoToken.DEPOIS_DO_REFRESH;
 /**
  * Created by Gustavo Galvao on 23/07/2018.
  */
@@ -27,6 +32,7 @@ public class JwtTokenFilter extends OncePerRequestFilter{
     @Autowired
     private JwtService jwtService;
 
+    @Override
     public void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -36,20 +42,18 @@ public class JwtTokenFilter extends OncePerRequestFilter{
             String token = headerToken.get();
             Optional<Long> id = jwtService.getIdFromToken(token);
             if (existeAutenticacoesContexto()) {
+                Usuario usuario = usuarioRepository.findById(id);
                 switch (jwtService.verificaTempoExpirado(token)) {
                     case ANTES_DO_REFRESH:
-                        Usuario usuarioA = usuarioRepository.findByIdUser(id);
-                        setAuthentication(usuarioA, request);
+                        setAuthentication(usuario, request);
                         break;
                     case DEPOIS_DA_EXPIRACAO:
-                        Usuario usuarioB = usuarioRepository.findByIdUser(id);
-                        setAuthentication(usuarioB, request);
+                        setAuthentication(usuario, request);
                         break;
                     case DEPOIS_DO_REFRESH:
-                        Usuario usuarioC = usuarioRepository.findByIdUser(id);
-                        setAuthentication(usuarioC, request);
-                        usuarioC.setToken(jwtService.toToken(usuarioC));
-                        response.setHeader("Authorization", usuarioC.getToken());
+                        setAuthentication(usuario, request);
+                        usuario.setToken(jwtService.toToken(usuario));
+                        response.setHeader("Authorization", usuario.getToken());
                         break;
                     default: break;
                 }

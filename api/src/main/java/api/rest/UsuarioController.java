@@ -1,6 +1,14 @@
 package api.rest;
 
+import api.rest.util.ApiInternalError;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.omg.CORBA.Any;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -8,21 +16,24 @@ import org.springframework.web.bind.annotation.*;
 import api.repository.usuario.UsuarioRepository;
 import api.model.Usuario;
 import api.seguranca.jwt.JwtService;
+
+import javax.persistence.EntityListeners;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api")
-public class UsuarioService {
+public class UsuarioController {
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	public UsuarioRepository usuarioRepository;
 
 	@Autowired
-	private JwtService jwtService;
+	public JwtService jwtService;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public PasswordEncoder passwordEncoder;
 
 	// Coletar todos os usuários
 	@GetMapping("/usuarios")
@@ -43,21 +54,28 @@ public class UsuarioService {
 
 	//Loga o usuário
 	@PostMapping("/login")
-	public ResponseEntity<Usuario> logarUsuario(@Valid @RequestBody ParametrosLogin parametrosLogin) {
+	public ResponseEntity<String> logarUsuario(@Valid @RequestBody Usuario parametrosLogin) {
 		Optional<Usuario> optionalUsuario = usuarioRepository.findByLogin(parametrosLogin.getLogin());
 		if (optionalUsuario.isPresent() && passwordEncoder.matches(parametrosLogin.getSenha(), optionalUsuario.get().getSenha())) {
 			Usuario usuario = optionalUsuario.get();
 			usuario.setToken(jwtService.toToken(usuario));
-			return ResponseEntity.ok(usuario);
+			return ResponseEntity.ok(usuario.toString());
 		} else {
-			return ResponseEntity.notFound().build();
+			List erros = new ArrayList <String>();
+			erros.add("Usuario/senha encorretos");
+			return new ResponseEntity<String>(erros.toString(), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
 		}
 	}
 
-	class ParametrosLogin {
+	public class ParametrosLogin {
 		private String login;
 		private String senha;
-
+		public ParametrosLogin(){}
+		@JsonCreator
+		public ParametrosLogin(@JsonProperty("login") String login, @JsonProperty("senha") String senha){
+			this.login = login;
+			this.senha = senha;
+		}
 		public String getLogin() {
 			return login;
 		}

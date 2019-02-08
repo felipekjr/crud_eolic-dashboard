@@ -60,4 +60,13 @@ public class Usuario {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }
