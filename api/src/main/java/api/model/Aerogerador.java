@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -25,7 +26,8 @@ public class Aerogerador {
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
 	private Long id;
-	
+
+	@NotNull
 	@Column(name = "nome")
 	private String nome;
 	
@@ -36,11 +38,12 @@ public class Aerogerador {
 	private BigDecimal longitude;
 	
 	@Column(name = "altura_torre")
-	private BigDecimal altura_torre;
+	private BigDecimal alturaTorre;
 	
 	@Column(name = "diametro_varredura")
-	private BigDecimal diametro_varredura;
-	
+	private BigDecimal diametroVarredura;
+
+	@NotNull
 	@Column(name = "modelo")
 	private String modelo;		
 	
@@ -80,20 +83,20 @@ public class Aerogerador {
 		this.longitude = longitude;
 	}
 
-	public BigDecimal getAltura_torre() {
-		return altura_torre;
+	public BigDecimal getAlturaTorre() {
+		return alturaTorre;
 	}
 
-	public void setAltura_torre(BigDecimal altura_torre) {
-		this.altura_torre = altura_torre;
+	public void setAlturaTorre(BigDecimal alturaTorre) {
+		this.alturaTorre = alturaTorre;
 	}
 
-	public BigDecimal getDiametro_varredura() {
-		return diametro_varredura;
+	public BigDecimal getDiametroVarredura() {
+		return diametroVarredura;
 	}
 
-	public void setDiametro_varredura(BigDecimal diametro_varredura) {
-		this.diametro_varredura = diametro_varredura;
+	public void setDiametroVarredura(BigDecimal diametroVarredura) {
+		this.diametroVarredura = diametroVarredura;
 	}
 
 	public String getModelo() {
@@ -111,6 +114,18 @@ public class Aerogerador {
 	public void setParqueEolico(ParqueEolico parqueEolico) {
 		this.parqueEolico = parqueEolico;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Aerogerador{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				", alturaTorre=" + alturaTorre +
+				", diametroVarredura=" + diametroVarredura +
+				", modelo='" + modelo + '\'' +
+				", parqueEolico=" + parqueEolico +
+				'}';
+	}
 }

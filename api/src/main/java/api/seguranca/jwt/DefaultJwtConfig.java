@@ -18,7 +18,7 @@ class DefaultJwtConfig implements JwtService {
 
         private String secret = "MySecret";
         private int sessionTime = 60;
-        private int refreshTime = 60;
+        private int refreshTime = 0;
         private static final long MILISEGUNDOS_POR_MINUTO = 60000;
 
         @Override

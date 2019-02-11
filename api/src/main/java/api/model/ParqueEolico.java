@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -23,7 +24,8 @@ public class ParqueEolico {
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
 	private Long id;
-	
+
+	@NotNull
 	@Column(name = "nome")
 	private String nome;
 	
@@ -32,9 +34,10 @@ public class ParqueEolico {
 	
 	@Column(name = "longitude")
 	private int longitude;
-	
+
+	@NotNull
 	@Column(name = "potencia_instalada")
-	private BigDecimal potencia_instalada;
+	private BigDecimal potenciaInstalada;
 	
 	@ManyToOne	
 	@JoinColumn(name = "complexo_eolico_id")
@@ -72,12 +75,12 @@ public class ParqueEolico {
 		this.longitude = longitude;
 	}
 
-	public BigDecimal getPotencia_instalada() {
-		return potencia_instalada;
+	public BigDecimal getPotenciaInstalada() {
+		return potenciaInstalada;
 	}
 
-	public void setPotencia_instalada(BigDecimal potencia_instalada) {
-		this.potencia_instalada = potencia_instalada;
+	public void setPotenciaInstalada(BigDecimal potenciaInstalada) {
+		this.potenciaInstalada = potenciaInstalada;
 	}
 
 	public ComplexoEolico getComplexoEolico() {
@@ -86,6 +89,17 @@ public class ParqueEolico {
 
 	public void setComplexoEolico(ComplexoEolico complexoEolico) {
 		this.complexoEolico = complexoEolico;
-	}	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "ParqueEolico{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", latitude=" + latitude +
+				", longitude=" + longitude +
+				", potencia_instalada=" + potenciaInstalada +
+				", complexoEolico=" + complexoEolico +
+				'}';
+	}
 }

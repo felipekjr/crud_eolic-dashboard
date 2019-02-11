@@ -2,9 +2,11 @@ package api.seguranca.jwt;
 
 import api.model.Usuario;
 import api.repository.usuario.UsuarioRepository;
+import api.seguranca.identificacao.GerenciadorAuthorities;
 import api.util.SituacaoToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
@@ -31,6 +33,9 @@ public class JwtTokenFilter extends OncePerRequestFilter{
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private GerenciadorAuthorities gerenciadorAuthorities;
 
     @Override
     public void doFilterInternal(
@@ -68,7 +73,8 @@ public class JwtTokenFilter extends OncePerRequestFilter{
     }
 
     private void setAuthentication(Usuario usuario, HttpServletRequest request) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuario, null);
+        Collection<GrantedAuthority> authorities = gerenciadorAuthorities.getAuthorities(usuario);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(usuario, null, authorities);
         token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(token);
     }

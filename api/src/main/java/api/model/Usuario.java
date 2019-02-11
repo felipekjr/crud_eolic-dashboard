@@ -66,7 +66,6 @@ public class Usuario {
         return "Usuario{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", token='" + token + '\'' +
                 '}';
     }
 }

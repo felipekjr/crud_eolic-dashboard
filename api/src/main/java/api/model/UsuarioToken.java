@@ -1,4 +1,14 @@
 package api.model;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Danilo
  * Modela os dados de usuário no payload do token
@@ -6,19 +16,29 @@ package api.model;
 
 
 public class UsuarioToken {
-
-	
+	@Id
+	@GenericGenerator(name="incrementador" , strategy="increment")
+	@GeneratedValue(generator="incrementador")
+	@Column(name = "id")
 	private Long id;
-	private String login;
-	private String senha;	
-	
-	public UsuarioToken() {}
 
-	public UsuarioToken(Long id, String login, String senha) {
-		super();
-		this.id = id;
-		this.login = login;
-		this.senha = senha;
+	@NotNull
+	@Column(name = "login", unique = true)
+	private String login;
+
+	@NotNull
+	@Column(name = "senha")
+	private String senha;
+
+	@Transient
+	private String token;
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public Long getId() {
@@ -43,5 +63,14 @@ public class UsuarioToken {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario{" +
+				"id=" + id +
+				", login='" + login +
+				", token='" + token +
+				'}';
 	}
 }

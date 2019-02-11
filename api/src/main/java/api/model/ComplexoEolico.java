@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -20,13 +21,16 @@ public class ComplexoEolico {
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
 	private Long id;
-	
+
+	@NotNull
 	@Column(name = "nome")
 	private String nome;
-	
+
+	@NotNull
 	@Column(name = "uf")
 	private String uf;
-	
+
+	@NotNull
 	@Column(name = "identificador")
 	private String identificador;
 
@@ -60,5 +64,15 @@ public class ComplexoEolico {
 
 	public void setIdentificador(String identificador) {
 		this.identificador = identificador;
+	}
+
+	@Override
+	public String toString() {
+		return "ComplexoEolico{" +
+				"id=" + id +
+				", nome='" + nome + '\'' +
+				", uf='" + uf + '\'' +
+				", identificador='" + identificador + '\'' +
+				'}';
 	}
 }
