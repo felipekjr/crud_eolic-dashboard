@@ -1,9 +1,6 @@
-package api.rest.util;
+package api.controller.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-
-import javax.ws.rs.BeanParam;
 
 public class ErrorService {
     @Autowired

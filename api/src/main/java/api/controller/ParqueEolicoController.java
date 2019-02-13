@@ -1,10 +1,10 @@
-package api.rest;
+package api.controller;
 
 import api.exception.ResourceNotFoundException;
 import api.model.ParqueEolico;
 import api.repository.ParqueEolicoRepository;
-import api.rest.util.ApiInternalError;
-import api.rest.util.ErrorService;
+import api.controller.util.ApiInternalError;
+import api.controller.util.ErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,4 @@
-package api.rest.util;
-
-import org.omg.CORBA.Any;
+package api.controller.util;
 
 public class ApiInternalError {
     String campo;

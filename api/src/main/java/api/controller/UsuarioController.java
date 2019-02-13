@@ -1,10 +1,8 @@
-package api.rest;
+package api.controller;
 
-import api.rest.util.ApiInternalError;
+import api.controller.util.ApiInternalError;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -50,14 +48,14 @@ public class UsuarioController {
 			Usuario usuario = optionalUsuario.get();
 			usuario.setToken(jwtService.toToken(usuario));
 			return ResponseEntity.ok(usuario);
-		} else {//
+		} else {
 			ArrayList<ApiInternalError> erros = new ArrayList<>();
 			ApiInternalError erro = new ApiInternalError();
 			erro.setCampo("SENHA/USUARIO");
 			erro.setValorRejeitado(parametrosLogin);
 			erro.setMensagem("Usuario ou senha invalidos");
 			erros.add(erro);
-			return new ResponseEntity<>(erros, new HttpHeaders(), HttpStatus.UNAUTHORIZED);//
+			return ResponseEntity.badRequest().body("sa");
 		}
 	}
 
