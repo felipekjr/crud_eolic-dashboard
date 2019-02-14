@@ -1,6 +1,6 @@
-package api.seguranca;
+package api.arq.seguranca;
 
-import api.seguranca.jwt.JwtTokenFilter;
+import api.arq.seguranca.jwt.JwtTokenFilter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

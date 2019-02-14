@@ -1,11 +1,10 @@
-package api.seguranca.jwt;
+package api.arq.seguranca.jwt;
 import api.model.Usuario;
-import api.util.SituacaoToken;
+import api.arq.util.SituacaoToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.*;
 

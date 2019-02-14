@@ -1,7 +1,6 @@
-package api.seguranca.identificacao;
+package api.arq.seguranca.identificacao;
 
 import api.model.Usuario;
-import com.google.common.collect.Sets;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;

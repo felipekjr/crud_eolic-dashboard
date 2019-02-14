@@ -1,7 +1,9 @@
 package api.arq.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public abstract class AbstractValidator {
     @Autowired
     public Erros erros;

@@ -1,4 +1,5 @@
 package api.model;
+import api.arq.modelo.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -18,7 +19,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
 //        allowGetters = true)
-public class ParqueEolico {
+public class ParqueEolico extends AbstractEntity {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")

@@ -1,5 +1,6 @@
 package api.model;
 
+import api.arq.modelo.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, ignoreUnknown = true)
 
-public class Usuario {
+public class Usuario extends AbstractEntity {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
@@ -28,6 +29,9 @@ public class Usuario {
 
 	@Transient
 	private String token = "";
+
+    @Column(name = "ativo")
+    private Boolean ativo = true;
 
     public Long getId() {
         return id;

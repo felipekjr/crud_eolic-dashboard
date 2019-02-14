@@ -8,9 +8,8 @@ import java.util.List;
 
 @Component
 @RequestScope
-public abstract class Erros{
+public class Erros{
     private List<String> erros;
-
     public void adicionarErro(String erro) {
         erros.add(erro);
     }

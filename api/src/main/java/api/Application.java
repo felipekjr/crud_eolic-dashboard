@@ -1,3 +1,4 @@
+
 package api;
 
 import org.springframework.boot.SpringApplication;
@@ -16,17 +17,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableJpaAuditing
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);		
-		try {
-	        ObjectMapper mapper = new ObjectMapper();
-	        mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);	       
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-		
-	}
-	
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
-
-

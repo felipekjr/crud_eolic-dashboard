@@ -10,52 +10,51 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Optional;
 
-abstract class CRUDController extends AbstractEntity{
+public abstract class CRUDController<T extends AbstractEntity>{
     @Autowired
-    private CRUDService<AbstractEntity> service;
+    private CRUDService<T> service;
+    @Autowired
+    private AbstractCRUDValidador<T> validator;
 
     @Autowired
-    private AbstractCRUDValidador<AbstractEntity> validator;
-
-    @Autowired
-    private RequisicaoInvalidaException requisicaoInvalida;
+    RequisicaoInvalidaException requisicaoInvalida;
 
     @GetMapping("/{id}")
-    ResponseEntity<AbstractEntity> buscarPorId(@PathVariable Long id) throws  Exception {
-       AbstractEntity entidadeEncontrada = service.buscarPorId(id);
+    ResponseEntity<T> buscarPorId(@PathVariable Long id) throws  Exception {
+       T entidadeEncontrada = service.buscarPorId(id);
        return ResponseEntity.ok(entidadeEncontrada);
     }
 
     @GetMapping("/all")
-    public Iterable<AbstractEntity> buscarTodos() {
+    public Iterable<T> buscarTodos() {
         return service.todos();
     }
 
     @PostMapping("/")
-    ResponseEntity<AbstractEntity> salvar(@RequestBody @Valid AbstractEntity entidade) throws Exception {
+    ResponseEntity<T> salvar(@RequestBody @Valid T entidade) throws Exception {
         validator.validarAntesDeSalvar(entidade);
         requisicaoInvalida.verificar(validator.erros);
         service.executarAntesDeSalvar(entidade);
-        AbstractEntity entidadePersistida = service.salvar(entidade);
+        T entidadePersistida = service.salvar(entidade);
         service.executarAposSalvar(entidade);
         return ResponseEntity.ok(entidadePersistida);
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<AbstractEntity> editar(@PathVariable Long id, @RequestBody @Valid AbstractEntity entidade) throws  Exception  {
+    ResponseEntity<T> editar(@PathVariable Long id, @RequestBody @Valid T entidade) throws  Exception  {
             service.buscarPorId(id);
             entidade.id = id;
             validator.validarAntesDeSalvar(entidade);
             requisicaoInvalida.verificar(validator.erros);
             service.executarAntesDeSalvar(entidade);
-            AbstractEntity entidadePersistida = service.salvar(entidade);
+            T entidadePersistida = service.salvar(entidade);
             service.executarAposSalvar(entidade);
             return ResponseEntity.ok(entidadePersistida);
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<AbstractEntity> remover(@PathVariable Long id) throws  Exception {
-        AbstractEntity entidadePersistida = service.buscarPorId(id);
+    ResponseEntity<T> remover(@PathVariable Long id) throws  Exception {
+        T entidadePersistida = service.buscarPorId(id);
         validator.validarAntesDeRemover(entidadePersistida);
        requisicaoInvalida.verificar(validator.erros);
         service.executarAntesDeRemover(entidadePersistida);

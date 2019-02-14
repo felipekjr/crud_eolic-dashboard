@@ -1,9 +1,10 @@
 package api.arq.validator;
 
 import api.arq.modelo.AbstractEntity;
+import org.springframework.stereotype.Component;
 
-
-public abstract class AbstractCRUDValidador<AbstractEntity> extends  AbstractValidator{
-    public abstract void validarAntesDeSalvar(AbstractEntity T);
-    public abstract void validarAntesDeRemover(AbstractEntity T);
+@Component
+public abstract class AbstractCRUDValidador<T extends AbstractEntity> extends  AbstractValidator {
+    public abstract void validarAntesDeSalvar(T entidade);
+    public abstract void validarAntesDeRemover(T entidade);
 }

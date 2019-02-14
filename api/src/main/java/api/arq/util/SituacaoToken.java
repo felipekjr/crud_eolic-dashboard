@@ -1,4 +1,4 @@
-package api.util;
+package api.arq.util;
 
 public enum  SituacaoToken {
     ANTES_DO_REFRESH,

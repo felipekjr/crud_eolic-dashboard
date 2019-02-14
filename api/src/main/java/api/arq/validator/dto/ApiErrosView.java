@@ -10,4 +10,20 @@ public class ApiErrosView{
         this.fieldErros = fieldErros;
         this.errosGerais = erroGerais;
     }
+
+    public List<ApiFieldErro> getFieldErros() {
+        return fieldErros;
+    }
+
+    public void setFieldErros(List<ApiFieldErro> fieldErros) {
+        this.fieldErros = fieldErros;
+    }
+
+    public List<ApiErroGeral> getErrosGerais() {
+        return errosGerais;
+    }
+
+    public void setErrosGerais(List<ApiErroGeral> errosGerais) {
+        this.errosGerais = errosGerais;
+    }
 }

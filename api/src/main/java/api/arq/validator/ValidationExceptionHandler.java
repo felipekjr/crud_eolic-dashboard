@@ -29,7 +29,8 @@ import java.util.stream.Collectors;
  */
 
 @ControllerAdvice
-class ValidationExceptionHandler extends ResponseEntityExceptionHandler{
+public class ValidationExceptionHandler extends ResponseEntityExceptionHandler{
+
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid( MethodArgumentNotValidException exception,
      HttpHeaders headers,  HttpStatus status, WebRequest request)  {
@@ -52,7 +53,7 @@ class ValidationExceptionHandler extends ResponseEntityExceptionHandler{
         return new ResponseEntity(apiErrorsView, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    private  ApiErrosView processarErrosSistema(List<FieldError> fieldErrors, List<ObjectError> globalErrors) {
+    private ApiErrosView processarErrosSistema(List<FieldError> fieldErrors, List<ObjectError> globalErrors) {
         List<ApiFieldErro> apiFieldErrors = fieldErrors.stream().map(fieldError -> new ApiFieldErro(
                 fieldError.getField(), fieldError.getCode(), fieldError.getRejectedValue()))
                 .collect(Collectors.toList());

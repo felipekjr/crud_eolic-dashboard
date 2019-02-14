@@ -1,4 +1,6 @@
 package api.model;
+import api.arq.modelo.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -9,13 +11,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "complexo_eolico")
 @EntityListeners(AuditingEntityListener.class)
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
 //        allowGetters = true)
-public class ComplexoEolico {
+public class ComplexoEolico extends AbstractEntity {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
@@ -34,7 +37,11 @@ public class ComplexoEolico {
 	@Column(name = "identificador")
 	private String identificador;
 
-	public Long getId() {
+    @JsonIgnore
+    @OneToMany(mappedBy = "complexoEolico", fetch = FetchType.LAZY)
+    private List<ParqueEolico> parquesEolicos;
+
+    public Long getId() {
 		return id;
 	}
 
@@ -66,7 +73,15 @@ public class ComplexoEolico {
 		this.identificador = identificador;
 	}
 
-	@Override
+    public List<ParqueEolico> getParquesEolicos() {
+        return parquesEolicos;
+    }
+
+    public void setParquesEolicos(List<ParqueEolico> parquesEolicos) {
+        this.parquesEolicos = parquesEolicos;
+    }
+
+    @Override
 	public String toString() {
 		return "ComplexoEolico{" +
 				"id=" + id +

@@ -1,5 +1,7 @@
 package api.arq.modelo;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,7 +12,8 @@ import javax.validation.constraints.NotNull;
 @MappedSuperclass
 public class AbstractEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_generator")
+    @GenericGenerator(name="incrementador" , strategy="increment")
+    @GeneratedValue(generator="incrementador")
     public long id = 0;
 
     @NotNull

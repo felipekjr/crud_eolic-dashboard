@@ -9,13 +9,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public abstract class LoginValidator implements Validator {
+public class LoginValidator implements Validator{
     @Autowired
     UsuarioValidatorHelper usuarioValidatorHelper;
 
     @Override
     public void validate(Object target, Errors errors) {
         ParametrosLogin parametrosLogin = ((ParametrosLogin) target);
+        System.out.println((parametrosLogin));
         if (!usuarioValidatorHelper.usuarioAutenticado(parametrosLogin)) {
             errors.reject(ApiErroCodigo.SENHA_OU_USUARIO_INCORRETO.toString());
         }

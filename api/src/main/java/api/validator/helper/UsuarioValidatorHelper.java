@@ -16,19 +16,18 @@ public class UsuarioValidatorHelper{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//        public Boolean senhasInformadasConferem(Usuario usuario){
-//            return usuario.getSenha() == usuario.getConfirmarSenha();
-//        }
-
     public Boolean usuarioAutenticado(ParametrosLogin parametrosLogin) {
         Optional<Usuario> optionalUsuario  = usuarioRepository.findByLogin(parametrosLogin.getLogin());
-        return optionalUsuario.isPresent() && passwordEncoder.matches(parametrosLogin.getSenha(), optionalUsuario.get().getSenha());
+        if(optionalUsuario.isPresent() && passwordEncoder.matches(parametrosLogin.getSenha(), optionalUsuario.get().getSenha())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public Boolean existeUsuarioInformado(Usuario entidade){
         Optional<Usuario> usuarioCadastrado = usuarioRepository.findByLogin(entidade.getLogin());
         return usuarioCadastrado.isPresent() && entidade.getId() != usuarioCadastrado.get().getId();
     }
-
 
 }

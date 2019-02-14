@@ -1,9 +1,8 @@
-package api.seguranca.jwt;
+package api.arq.seguranca.jwt;
 
 import api.model.Usuario;
 import api.repository.usuario.UsuarioRepository;
-import api.seguranca.identificacao.GerenciadorAuthorities;
-import api.util.SituacaoToken;
+import api.arq.seguranca.identificacao.GerenciadorAuthorities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import static api.util.SituacaoToken.ANTES_DO_REFRESH;
-import static api.util.SituacaoToken.DEPOIS_DA_EXPIRACAO;
-import static api.util.SituacaoToken.DEPOIS_DO_REFRESH;
 /**
  * Created by Gustavo Galvao on 23/07/2018.
  */

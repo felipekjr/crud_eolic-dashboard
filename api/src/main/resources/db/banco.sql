@@ -9,6 +9,7 @@
   id bigint NOT NULL,
   login character varying NOT NULL,
   senha character varying NOT NULL,
+  ativo boolean NOT NULL,
   CONSTRAINT usuario_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -27,6 +28,7 @@ ALTER TABLE public.usuario
   nome character varying (45) NOT NULL,
   uf character varying (45) NOT NULL,
   identificador character varying (45) NOT NULL,
+  ativo boolean NOT NULL,
   CONSTRAINT complexo_eolico_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -47,6 +49,7 @@ ALTER TABLE public.complexo_eolico
   longitude int,
   potencia_instalada numeric NOT NULL,
   complexo_eolico_id bigint NOT NULL,
+  ativo boolean NOT NULL,
   CONSTRAINT parque_eolico_pkey PRIMARY KEY (id),
   CONSTRAINT complexo_eolico_id_fkey FOREIGN KEY (complexo_eolico_id)
   	REFERENCES public.complexo_eolico (id) MATCH SIMPLE
@@ -72,6 +75,7 @@ ALTER TABLE public.parque_eolico
   diametro_varredura numeric,
   modelo character varying (45) NOT NULL,
   parque_eolico_id bigint NOT NULL,
+  ativo boolean NOT NULL,
   CONSTRAINT aerogerador_pkey PRIMARY KEY (id),
   CONSTRAINT parque_eolico_id_fkey FOREIGN KEY (parque_eolico_id)
   	REFERENCES public.parque_eolico (id) MATCH SIMPLE
@@ -84,4 +88,4 @@ ALTER TABLE public.aerogerador
   OWNER TO postgres;
 
 INSERT INTO usuario
-VALUES (1, 'admin', 'admin');
+VALUES (1, 'admin', 'admin', true);

@@ -1,7 +1,9 @@
 package api.arq.exception;
 
 import api.arq.validator.Erros;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RequisicaoInvalidaException extends RuntimeException{
     public Erros erros;
     public RequisicaoInvalidaException(Erros erros) {

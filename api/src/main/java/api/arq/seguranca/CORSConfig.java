@@ -1,4 +1,4 @@
-package api.seguranca;
+package api.arq.seguranca;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
