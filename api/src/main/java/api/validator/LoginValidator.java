@@ -16,7 +16,6 @@ public class LoginValidator implements Validator{
     @Override
     public void validate(Object target, Errors errors) {
         ParametrosLogin parametrosLogin = ((ParametrosLogin) target);
-        System.out.println((parametrosLogin));
         if (!usuarioValidatorHelper.usuarioAutenticado(parametrosLogin)) {
             errors.reject(ApiErroCodigo.SENHA_OU_USUARIO_INCORRETO.toString());
         }

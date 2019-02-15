@@ -18,11 +18,7 @@ public class UsuarioValidatorHelper{
 
     public Boolean usuarioAutenticado(ParametrosLogin parametrosLogin) {
         Optional<Usuario> optionalUsuario  = usuarioRepository.findByLogin(parametrosLogin.getLogin());
-        if(optionalUsuario.isPresent() && passwordEncoder.matches(parametrosLogin.getSenha(), optionalUsuario.get().getSenha())){
-            return true;
-        }else{
-            return false;
-        }
+        return optionalUsuario.isPresent() && passwordEncoder.matches(parametrosLogin.getSenha(), optionalUsuario.get().getSenha());
     }
 
     public Boolean existeUsuarioInformado(Usuario entidade){

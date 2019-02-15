@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/parque-eolico")
+@RequestMapping("/api/parque_eolico")
 public class ParqueEolicoController extends  CRUDController<ParqueEolico>{
     @Autowired
     private ParqueEolicoService parqueEolicoService;

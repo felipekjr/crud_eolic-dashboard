@@ -17,7 +17,7 @@ public class Usuario extends AbstractEntity {
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
-	private Long id;
+	private long id;
 
 	@NotNull
 	@Column(name = "login", unique = true)

@@ -1,7 +1,9 @@
 package api.model;
 import api.arq.modelo.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -17,14 +19,14 @@ import java.util.List;
 @Entity
 @Table(name = "parque_eolico")
 @EntityListeners(AuditingEntityListener.class)
-//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
-//        allowGetters = true)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
+        allowGetters = true)
 public class ParqueEolico extends AbstractEntity {
 	@Id
 	@GenericGenerator(name="incrementador" , strategy="increment")
 	@GeneratedValue(generator="incrementador")
 	@Column(name = "id")
-	private Long id;
+	private long id;
 
 	@NotNull
 	@Column(name = "nome")
@@ -39,10 +41,14 @@ public class ParqueEolico extends AbstractEntity {
 	@NotNull
 	@Column(name = "potencia_instalada")
 	private BigDecimal potenciaInstalada;
-	
+
+	@NotNull
 	@ManyToOne	
 	@JoinColumn(name = "complexo_eolico_id")
+    @JsonProperty("complexoEolico")
 	private ComplexoEolico complexoEolico;
+
+
 
 	public Long getId() {
 		return id;
@@ -103,4 +109,7 @@ public class ParqueEolico extends AbstractEntity {
 				", complexoEolico=" + complexoEolico +
 				'}';
 	}
+
+    public ParqueEolico() {
+    }
 }

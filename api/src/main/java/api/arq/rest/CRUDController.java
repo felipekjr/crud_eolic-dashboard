@@ -15,9 +15,7 @@ public abstract class CRUDController<T extends AbstractEntity>{
     private CRUDService<T> service;
     @Autowired
     private AbstractCRUDValidador<T> validator;
-
-    @Autowired
-    RequisicaoInvalidaException requisicaoInvalida;
+    RequisicaoInvalidaException requisicaoInvalida = new RequisicaoInvalidaException();
 
     @GetMapping("/{id}")
     ResponseEntity<T> buscarPorId(@PathVariable Long id) throws  Exception {
@@ -43,7 +41,7 @@ public abstract class CRUDController<T extends AbstractEntity>{
     @PutMapping("/{id}")
     ResponseEntity<T> editar(@PathVariable Long id, @RequestBody @Valid T entidade) throws  Exception  {
             service.buscarPorId(id);
-            entidade.id = id;
+            entidade.setId(id);
             validator.validarAntesDeSalvar(entidade);
             requisicaoInvalida.verificar(validator.erros);
             service.executarAntesDeSalvar(entidade);

@@ -24,7 +24,7 @@ class DefaultJwtConfig implements JwtService {
         public String toToken(Usuario usuario){
                 return Jwts
                 .builder()
-                .setSubject(usuario.getId().toString())
+                .setSubject(((Long) usuario.getId()).toString())
                 .setExpiration(expireTimeFromNow())
                 .signWith(SignatureAlgorithm.HS512,secret)
                 .compact();

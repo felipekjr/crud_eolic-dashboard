@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/usuario")
 public class UsuarioController extends CRUDController<Usuario> {
 	@Autowired
 	private UsuarioService usuarioService;

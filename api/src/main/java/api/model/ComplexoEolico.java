@@ -41,7 +41,7 @@ public class ComplexoEolico extends AbstractEntity {
     @OneToMany(mappedBy = "complexoEolico", fetch = FetchType.LAZY)
     private List<ParqueEolico> parquesEolicos;
 
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 
