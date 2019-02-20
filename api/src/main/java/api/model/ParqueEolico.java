@@ -22,12 +22,6 @@ import java.util.List;
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
 public class ParqueEolico extends AbstractEntity {
-	@Id
-	@GenericGenerator(name="incrementador" , strategy="increment")
-	@GeneratedValue(generator="incrementador")
-	@Column(name = "id")
-	private long id;
-
 	@NotNull
 	@Column(name = "nome")
 	private String nome;

@@ -13,12 +13,6 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, ignoreUnknown = true)
 
 public class Usuario extends AbstractEntity {
-	@Id
-	@GenericGenerator(name="incrementador" , strategy="increment")
-	@GeneratedValue(generator="incrementador")
-	@Column(name = "id")
-	private long id;
-
 	@NotNull
 	@Column(name = "login", unique = true)
 	private String login;

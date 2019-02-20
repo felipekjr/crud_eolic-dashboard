@@ -14,7 +14,7 @@ public class AbstractEntity {
     @Id
     @GenericGenerator(name="incrementador" , strategy="increment")
     @GeneratedValue(generator="incrementador")
-    public Long id;
+    public Long id = 0L;
 
     public AbstractEntity() {
     }

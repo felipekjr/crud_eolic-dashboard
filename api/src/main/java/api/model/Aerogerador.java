@@ -22,12 +22,6 @@ import java.util.Date;
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
 //        allowGetters = true)
 public class Aerogerador extends AbstractEntity {
-	@Id
-	@GenericGenerator(name="incrementador" , strategy="increment")
-	@GeneratedValue(generator="incrementador")
-	@Column(name = "id")
-	private Long id;
-
 	@NotNull
 	@Column(name = "nome")
 	private String nome;

@@ -1,12 +1,12 @@
 package api.service;
 
-import api.arq.rest.CRUDService;;
-import api.model.Usuario;;
-import api.repository.usuario.UsuarioRepository;;
 import api.arq.rest.CRUDService;
 import api.model.Usuario;
 import api.repository.usuario.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;;
+import api.arq.rest.CRUDService;
+import api.model.Usuario;
+import api.repository.usuario.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 

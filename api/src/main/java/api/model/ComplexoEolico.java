@@ -19,12 +19,6 @@ import java.util.List;
 //@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
 //        allowGetters = true)
 public class ComplexoEolico extends AbstractEntity {
-	@Id
-	@GenericGenerator(name="incrementador" , strategy="increment")
-	@GeneratedValue(generator="incrementador")
-	@Column(name = "id")
-	private Long id;
-
 	@NotNull
 	@Column(name = "nome")
 	private String nome;
