@@ -12,5 +12,6 @@ import java.util.Optional;
 @Service
 public interface AerogeradorRepository extends JpaRepository<Aerogerador, Long> {
     List<Aerogerador> findByParqueEolico(ParqueEolico parqueEolico);
+    Optional<Aerogerador> findByNome(String nome);
 }
 

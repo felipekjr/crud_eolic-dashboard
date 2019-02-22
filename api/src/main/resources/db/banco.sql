@@ -45,8 +45,8 @@ ALTER TABLE public.complexo_eolico
 (
   id bigint NOT NULL,
   nome character varying (45),
-  latitude int,
-  longitude int,
+  latitude numeric,
+  longitude numeric,
   potencia_instalada numeric NOT NULL,
   complexo_eolico_id bigint NOT NULL,
   ativo boolean NOT NULL,
@@ -88,4 +88,4 @@ ALTER TABLE public.aerogerador
   OWNER TO postgres;
 
 INSERT INTO usuario
-VALUES (1, 'admin', 'admin', true);
+VALUES (1, 'admin', '$2a$10$HhitNAYtyiRUFgME7cjsJu.PtLW7aEv.eZCJNUybvr8NnTqhOTBWy', true);

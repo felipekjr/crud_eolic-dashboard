@@ -21,8 +21,8 @@ public class AerogeradorValidatorHelper{
     AutenticacaoUtil autenticacaoUtil = new AutenticacaoUtil();
 
     public Boolean existeAerogeradorComNomeInformado(Aerogerador aerogerador) {
-        Optional<Aerogerador> aerogeradorCadastrado = aerogeradorRepository.findById(aerogerador.getId());
-        return aerogeradorCadastrado.isPresent() && aerogerador.getId() != aerogeradorCadastrado.get().getId() && aerogerador.getParqueEolico().getId() == aerogeradorCadastrado.get().getParqueEolico().getId();
+        Optional<Aerogerador> aerogeradorCadastrado = aerogeradorRepository.findByNome(aerogerador.getNome());
+        return aerogeradorCadastrado.isPresent() && aerogerador.getId() != aerogeradorCadastrado.get().getId();
     }
 
     public Boolean parqueEolicoNaoExiste(Aerogerador aerogerador) {

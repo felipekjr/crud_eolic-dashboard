@@ -27,10 +27,10 @@ public class ParqueEolico extends AbstractEntity {
 	private String nome;
 	
 	@Column(name = "latitude")
-	private int latitude;
+	private BigDecimal latitude;
 	
 	@Column(name = "longitude")
-	private int longitude;
+	private BigDecimal longitude;
 
 	@NotNull
 	@Column(name = "potencia_instalada")
@@ -41,8 +41,6 @@ public class ParqueEolico extends AbstractEntity {
 	@JoinColumn(name = "complexo_eolico_id")
     @JsonProperty("complexoEolico")
 	private ComplexoEolico complexoEolico;
-
-
 
 	public Long getId() {
 		return id;
@@ -60,19 +58,19 @@ public class ParqueEolico extends AbstractEntity {
 		this.nome = nome;
 	}
 
-	public int getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(int latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
 
-	public int getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(int longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 
