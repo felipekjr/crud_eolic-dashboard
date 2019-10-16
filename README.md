@@ -1,5 +1,5 @@
 # eolic-api
-Api feita para o processo seletivo de estágio na LogapSistemas.
+Api feita para o processo seletivo que resultou na admissão como estagiário na LogapSistemas.
 
 ## O que aprendi:
 * Java SpringBoot 7
