@@ -1,5 +1,4 @@
-# eolic-api
-Api feita para o processo seletivo que resultou na admissão como estagiário na LogapSistemas.
+Projeto WEB e API feitos para o processo seletivo que resultou na admissão como estagiário na LogAp I.T Solutions.
 
 ## Techs
 * Angular 2+ 
